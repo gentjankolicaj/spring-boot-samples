@@ -4,47 +4,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springboot.samples.test_containers.model.Country;
 import org.springboot.samples.test_containers.repository.CountryRepository;
-import org.springboot.samples.test_containers.repository.base.CrudTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
-@Testcontainers //enable testcontainers functionality in test
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("mysql")
-public class CountryRepositoryMySQLTest extends CrudTest {
+public class CountryRepositoryMySQLTest extends BaseTest{
 
-    @Container
-    static MySQLContainer mySQLContainer= new MySQLContainer("mysql:latest")
-            .withDatabaseName("mysql-test-db")
-            .withUsername("root")
-            .withPassword("password");
-    Country country=new Country(null,"Albania",1L);
     @Autowired
     private CountryRepository countryRepository;
-
-    @DynamicPropertySource
-    static void setDynamicProperties(DynamicPropertyRegistry registry) {
-        String dynamicContainerUrl="jdbc:mysql://" + mySQLContainer.getContainerIpAddress() + ":" + mySQLContainer.getFirstMappedPort()+ "/" + mySQLContainer.getDatabaseName();;
-        dynamicContainerUrl=dynamicContainerUrl+"?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false";
-
-        String finalDynamicContainerUrl = dynamicContainerUrl;
-        Supplier<Object> urlSupplier=()-> finalDynamicContainerUrl;
-
-        registry.add("spring.datasource.url", urlSupplier);
-    }
+    Country country=new Country(null,"Albania",1L);
 
     @BeforeEach
     public void beforeEach(){
