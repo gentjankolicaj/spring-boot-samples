@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 //Singleton pattern implemented for creating test containers otherwise performance is low
 public abstract class BaseTest {
 
-    static MySQLContainer MYSQL_CONTAINER= new MySQLContainer("mysql:latest")
+    static final MySQLContainer MYSQL_CONTAINER= new MySQLContainer("mysql:8.0.26")
             .withDatabaseName("mysql-test-db")
             .withUsername("root")
             .withPassword("password");
