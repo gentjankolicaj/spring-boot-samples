@@ -1,5 +1,97 @@
 package org.springboot.samples.test_containers.repository.postgresql;
 
-class CountryRepositoryPostgresqlTest {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springboot.samples.test_containers.model.Country;
+import org.springboot.samples.test_containers.repository.CountryRepository;
+import org.springboot.samples.test_containers.repository.base.CrudTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.Optional;
+import java.util.function.Supplier;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+@DataJpaTest
+@Testcontainers
+@ActiveProfiles("postgresql")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+public class CountryRepositoryPostgresqlTest extends CrudTest {
+
+    @Container
+    static final PostgreSQLContainer POSTGRE_SQL_CONTAINER=new PostgreSQLContainer()
+            .withDatabaseName("postgresql-test-db")
+            .withUsername("root")
+            .withPassword("password");
+    Country country=new Country(null,"Albania",1L);
+    @Autowired
+    private CountryRepository countryRepository;
+
+    @DynamicPropertySource
+    static void setDynamicProperties(DynamicPropertyRegistry registry) {
+        String dynamicContainerUrl="jdbc:postgresql://" + POSTGRE_SQL_CONTAINER.getContainerIpAddress() + ":" + POSTGRE_SQL_CONTAINER.getFirstMappedPort()+ "/" + POSTGRE_SQL_CONTAINER.getDatabaseName();;
+
+        String finalDynamicContainerUrl = dynamicContainerUrl;
+        Supplier<Object> urlSupplier=()-> finalDynamicContainerUrl;
+
+        registry.add("spring.datasource.url", urlSupplier);
+    }
+
+    @BeforeEach
+    public void beforeEach(){
+        country=countryRepository.save(country);
+    }
+
+    @Test
+    @Override
+    public void create() {
+        Country country=new Country(null,"USA",1L);
+        Country savedCountry=countryRepository.save(country);
+        assertThat(savedCountry).usingRecursiveComparison().ignoringFields("countryId").isEqualTo(country);
+
+    }
+
+    @Override
+    @Test
+    public void read() {
+        Optional<Country> optionalCountry=countryRepository.findById(country.getCountryId());
+        assertThat(optionalCountry.get()).isNotNull()
+                .usingRecursiveComparison()
+                .ignoringFields("countryId")
+                .isEqualTo(country);
+    }
+
+    @Override
+    @Test
+    public void update() {
+        Optional<Country> optionalCountry=countryRepository.findById(country.getCountryId());
+
+        Country actualCountry=optionalCountry.get();
+        actualCountry.setCountryName("USA");
+
+        Country updatedCountry= countryRepository.saveAndFlush(actualCountry);
+        assertThat(updatedCountry).usingRecursiveComparison().isEqualTo(actualCountry);
+
+    }
+
+    @Override
+    @Test
+    public void delete() {
+        countryRepository.deleteById(country.getCountryId());
+        Optional<Country> optionalCountry=countryRepository.findById(1L);
+        assertThat(optionalCountry).isEmpty();
+    }
+
+
+
 
 }
+
