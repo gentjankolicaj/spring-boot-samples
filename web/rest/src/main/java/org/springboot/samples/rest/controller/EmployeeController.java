@@ -1,4 +1,48 @@
 package org.springboot.samples.rest.controller;
 
+import org.springboot.samples.rest.dto.EmployeeDto;
+import org.springboot.samples.rest.model.Employee;
+import org.springboot.samples.rest.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(EmployeeController.ENDPOINT)
 public class EmployeeController {
+     static final String ENDPOINT="/api/employee/";
+
+     private final EmployeeService employeeService;
+
+     @Autowired
+     public EmployeeController(EmployeeService employeeService) {
+          this.employeeService = employeeService;
+     }
+
+     @GetMapping
+     public ResponseEntity<List<Employee>> getAllEmployees(){
+          return ResponseEntity.status(HttpStatus.OK)
+                  .body(employeeService.findAll());
+     }
+
+     @GetMapping("{employeeId}")
+     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId){
+          return ResponseEntity.status(HttpStatus.OK)
+                  .body(employeeService.findById(employeeId));
+     }
+
+     @PostMapping()
+     public ResponseEntity<Void> createEmployee(@RequestBody EmployeeDto employeeDto) {
+          employeeService.save(employeeDto);
+          return new ResponseEntity<>(HttpStatus.CREATED);
+     }
+
+     @DeleteMapping("{employeeId}")
+     public ResponseEntity<Void> deleteEmployee(@PathVariable Long employeeId){
+          employeeService.deleteById(employeeId);
+          return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+     }
 }
