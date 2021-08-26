@@ -40,6 +40,12 @@ public class EmployeeController {
           return new ResponseEntity<>(HttpStatus.CREATED);
      }
 
+     @PutMapping("{employeeId}")
+     public ResponseEntity<Void> updateEmployee(@PathVariable Long employeeId,@RequestBody EmployeeDto employeeDto) {
+          employeeService.update(employeeId,employeeDto);
+          return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+     }
+
      @DeleteMapping("{employeeId}")
      public ResponseEntity<Void> deleteEmployee(@PathVariable Long employeeId){
           employeeService.deleteById(employeeId);

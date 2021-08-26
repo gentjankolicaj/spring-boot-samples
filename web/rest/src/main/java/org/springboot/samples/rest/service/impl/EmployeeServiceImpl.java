@@ -34,6 +34,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public void update(Long employeeId, EmployeeDto employeeDto) {
+
+    }
+
+    @Override
     public void deleteById(Long employeeId) {
 
     }

@@ -34,6 +34,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public void update(Long jobId, JobDto jobDto) {
+
+    }
+
+    @Override
     public void deleteById(Long jobId) {
 
     }

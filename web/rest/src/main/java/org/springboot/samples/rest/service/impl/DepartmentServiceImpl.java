@@ -34,6 +34,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public void update(Long departmentId, DepartmentDto departmentDto) {
+
+    }
+
+    @Override
     public void deleteById(Long departmentId) {
 
     }

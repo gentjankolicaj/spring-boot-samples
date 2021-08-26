@@ -12,5 +12,8 @@ public interface JobService {
 
     void save(JobDto jobDto);
 
+    void update(Long jobId, JobDto jobDto);
+
     void deleteById(Long jobId);
+
 }

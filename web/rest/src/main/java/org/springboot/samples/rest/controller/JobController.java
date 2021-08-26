@@ -40,6 +40,12 @@ public class JobController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PutMapping("{jobId}")
+    public ResponseEntity<Void> updateJob(@PathVariable Long jobId,@RequestBody JobDto jobDto){
+        jobService.update(jobId,jobDto);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @DeleteMapping("{jobId}")
     public ResponseEntity<Void> deleteJob(@PathVariable Long jobId){
         jobService.deleteById(jobId);

@@ -41,6 +41,12 @@ public class JobHistoryController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PutMapping("{jobHistoryId}")
+    public ResponseEntity<Void> updateJobHistory(@PathVariable Long jobHistoryId,@RequestBody JobHistoryDto jobHistoryDto){
+        jobHistoryService.update(jobHistoryId,jobHistoryDto);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @DeleteMapping("{jobHistoryId}")
     public ResponseEntity<Void> deleteJobHistory(@PathVariable Long jobHistoryId){
         jobHistoryService.deleteById(jobHistoryId);

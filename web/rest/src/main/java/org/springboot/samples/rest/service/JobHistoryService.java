@@ -12,5 +12,8 @@ public interface JobHistoryService {
 
     void save(JobHistoryDto jobHistoryDto);
 
+    void update(Long jobHistoryId, JobHistoryDto jobHistoryDto);
+
     void deleteById(Long jobHistoryId);
+
 }

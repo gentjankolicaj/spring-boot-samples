@@ -34,6 +34,11 @@ public class JobHistoryServiceImpl implements JobHistoryService {
     }
 
     @Override
+    public void update(Long jobHistoryId, JobHistoryDto jobHistoryDto) {
+
+    }
+
+    @Override
     public void deleteById(Long jobHistoryId) {
 
     }
