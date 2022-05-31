@@ -17,6 +17,9 @@
         <module>test</module>
         <module>session</module>
         <module>security</module>
+        <module>data-rest</module>
+        <module>data</module>
+
 
     </modules>
 

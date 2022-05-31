@@ -12,10 +12,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>springboot.samples</groupId>
-    <artifactId>data-jpa</artifactId>
+    <artifactId>data-jpa-mysql</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>data-jpa</name>
-    <description>data-jpa</description>
+    <name>data-jpa-mysql</name>
+    <description>data-jpa-mysql</description>
 
 
     <dependencies>
