@@ -41,8 +41,6 @@ hs_err_pid*
 
 */*.mvn
 */*.idea
-*/src/main/**/target/
-*/src/test/**/target/
-*/src/main/**/build/
-*/src/test/**/build/
+*/target/
+*/build/
 

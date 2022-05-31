@@ -1,0 +1,19 @@
+package springboot.samples.rest1.service;
+
+import springboot.samples.rest1.dto.DepartmentDto;
+import springboot.samples.rest1.model.Department;
+
+import java.util.List;
+
+public interface DepartmentService {
+    List<Department> findAll();
+
+    Department findById(Long departmentId);
+
+    void save(DepartmentDto departmentDto);
+
+    void update(Long departmentId, DepartmentDto departmentDto);
+
+    void deleteById(Long departmentId);
+
+}
