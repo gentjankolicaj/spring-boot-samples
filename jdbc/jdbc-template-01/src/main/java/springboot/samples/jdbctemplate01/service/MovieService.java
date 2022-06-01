@@ -9,7 +9,7 @@ public interface MovieService {
 
     Movie getMovie(Long movieId);
 
-    void deleteMovie(Integer id);
+    void deleteMovie(Long movieId);
 
     void addMovie(Movie movie);
 }
