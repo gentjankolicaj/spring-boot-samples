@@ -1,9 +1,9 @@
-package springboot.jdbctemplate01.controller;
+package springboot.samples.jdbctemplate01.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import springboot.jdbctemplate01.entity.Movie;
-import springboot.jdbctemplate01.service.MovieService;
+import springboot.samples.jdbctemplate01.entity.Movie;
+import springboot.samples.jdbctemplate01.service.MovieService;
 
 import java.util.List;
 

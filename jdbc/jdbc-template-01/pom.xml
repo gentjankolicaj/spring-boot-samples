@@ -2,6 +2,7 @@
 
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>jdbc</artifactId>
         <groupId>springboot.samples</groupId>
@@ -9,12 +10,18 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>springboot.samples</groupId>
     <artifactId>jdbc-template-01</artifactId>
     <name>jdbc-template-01</name>
+    <version>0.0.1-SNAPSHOT</version>
     <description>Jdbc template spring-boot sample</description>
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -26,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
 
         <dependency>
@@ -40,6 +47,7 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
+
     </dependencies>
 
 
@@ -84,6 +92,15 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>resources</directory>
+                <targetPath>${project.build.outputDirectory}</targetPath>
+                <includes>
+                    <include>application.properties</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

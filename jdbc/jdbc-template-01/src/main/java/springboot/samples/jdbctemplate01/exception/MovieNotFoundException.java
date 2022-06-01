@@ -1,4 +1,4 @@
-package springboot.jdbctemplate01.exception;
+package springboot.samples.jdbctemplate01.exception;
 
 public class MovieNotFoundException extends NotFoundException {
 }

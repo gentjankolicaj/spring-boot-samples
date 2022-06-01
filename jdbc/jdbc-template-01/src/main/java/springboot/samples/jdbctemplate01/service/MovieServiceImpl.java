@@ -1,7 +1,7 @@
-package springboot.jdbctemplate01.service;
+package springboot.samples.jdbctemplate01.service;
 
 import org.springframework.stereotype.Service;
-import springboot.jdbctemplate01.entity.Movie;
+import springboot.samples.jdbctemplate01.entity.Movie;
 
 import java.util.List;
 

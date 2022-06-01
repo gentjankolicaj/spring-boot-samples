@@ -1,33 +1,35 @@
-package springboot.jdbctemplate01.dao;
+package springboot.samples.jdbctemplate01.dao;
 
-import springboot.jdbctemplate01.entity.Movie;
+import org.springframework.stereotype.Repository;
+import springboot.samples.jdbctemplate01.entity.Actor;
 
 import java.util.List;
 import java.util.Optional;
 
-public class MovieDaoImpl implements MovieDao {
+@Repository
+public class ActorDaoImpl implements ActorDao {
     @Override
-    public List<Movie> selectMovies() {
+    public List<Actor> selectActors() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public Optional<Movie> selectMovieById(Long movieId) {
+    public Optional<Actor> selectActorById(Long actorId) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int insertMovie(Movie movie) {
+    public int insertActor(Actor actor) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int updateMovie(Long movieId, Movie movie) {
+    public int updateActor(Long actorId, Actor actor) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int deleteMovie(Long movieId) {
+    public int deleteActor(Long actorId) {
         throw new UnsupportedOperationException("Not implemented");
     }
 }

@@ -1,6 +1,6 @@
-package springboot.jdbctemplate01.service;
+package springboot.samples.jdbctemplate01.service;
 
-import springboot.jdbctemplate01.entity.Movie;
+import springboot.samples.jdbctemplate01.entity.Movie;
 
 import java.util.List;
 
