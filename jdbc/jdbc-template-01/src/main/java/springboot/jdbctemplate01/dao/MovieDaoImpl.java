@@ -8,26 +8,26 @@ import java.util.Optional;
 public class MovieDaoImpl implements MovieDao {
     @Override
     public List<Movie> selectMovies() {
-        return null;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public Optional<Movie> selectMovieById(Long movieId) {
-        return Optional.empty();
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public int insertMovie(Movie movie) {
-        return 0;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public int updateMovie(Long movieId, Movie movie) {
-        return 0;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public int deleteMovie(Long movieId) {
-        return 0;
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

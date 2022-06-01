@@ -8,26 +8,26 @@ import java.util.Optional;
 public class ActorDaoImpl implements ActorDao {
     @Override
     public List<Actor> selectActors() {
-        return null;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public Optional<Actor> selectActorById(Long actorId) {
-        return Optional.empty();
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public int insertActor(Actor actor) {
-        return 0;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public int updateActor(Long actorId, Actor actor) {
-        return 0;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
     public int deleteActor(Long actorId) {
-        return 0;
+        throw new UnsupportedOperationException("Not implemented");
     }
 }
