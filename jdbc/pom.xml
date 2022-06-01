@@ -18,6 +18,7 @@
 
     <modules>
         <module>jdbc-template-01</module>
+        <module>jdbc-template-02</module>
     </modules>
 
 
