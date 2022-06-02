@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: postgres_cont
-    image: postgres
+    image: postgres:latest
     environment:
       POSTGRES_USER: johndoe
       POSTGRES_PASSWORD: johndoe@P4ssw()rd
@@ -18,9 +18,9 @@ services:
     container_name: mysql_cont
     image: mysql:8.0.28
     environment:
-      - MYSQL_USER: johndoe
-      - MYSQL_PASSWORD: johndoe@P4ssw()rd
-      - MYSQL_ROOT_PASSWORD: toor
+      MYSQL_USER: johndoe
+      MYSQL_PASSWORD: johndoe@P4ssw()rd
+      MYSQL_ROOT_PASSWORD: toor
     ports:
       - "3306:3306"
     volumes:
