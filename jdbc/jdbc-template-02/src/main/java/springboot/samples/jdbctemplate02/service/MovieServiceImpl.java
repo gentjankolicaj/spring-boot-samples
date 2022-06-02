@@ -3,7 +3,7 @@ package springboot.samples.jdbctemplate02.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.samples.jdbctemplate02.dao.MovieDao;
-import springboot.samples.jdbctemplate02.entity.Movie;
+import springboot.samples.jdbctemplate02.domain.Movie;
 import springboot.samples.jdbctemplate02.exception.MovieNotFoundException;
 
 import java.util.List;

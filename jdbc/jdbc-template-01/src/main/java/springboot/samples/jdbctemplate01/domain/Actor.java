@@ -1,4 +1,4 @@
-package springboot.samples.jdbctemplate02.entity;
+package springboot.samples.jdbctemplate01.domain;
 
 
 import lombok.AllArgsConstructor;

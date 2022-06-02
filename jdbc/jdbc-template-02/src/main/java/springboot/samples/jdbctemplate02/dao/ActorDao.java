@@ -1,6 +1,6 @@
 package springboot.samples.jdbctemplate02.dao;
 
-import springboot.samples.jdbctemplate02.entity.Actor;
+import springboot.samples.jdbctemplate02.domain.Actor;
 
 import java.util.List;
 import java.util.Optional;

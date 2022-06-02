@@ -2,7 +2,7 @@ package springboot.samples.jdbctemplate01.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import springboot.samples.jdbctemplate01.entity.Movie;
+import springboot.samples.jdbctemplate01.domain.Movie;
 import springboot.samples.jdbctemplate01.service.MovieService;
 
 import java.util.List;

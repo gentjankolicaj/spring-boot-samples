@@ -1,7 +1,7 @@
 package springboot.samples.jdbctemplate02.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import springboot.samples.jdbctemplate02.entity.Actor;
+import springboot.samples.jdbctemplate02.domain.Actor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

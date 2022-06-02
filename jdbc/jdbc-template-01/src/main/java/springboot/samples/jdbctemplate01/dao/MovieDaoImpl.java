@@ -3,7 +3,7 @@ package springboot.samples.jdbctemplate01.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import springboot.samples.jdbctemplate01.entity.Movie;
+import springboot.samples.jdbctemplate01.domain.Movie;
 import springboot.samples.jdbctemplate01.mapper.MovieRowMapper;
 
 import java.util.List;

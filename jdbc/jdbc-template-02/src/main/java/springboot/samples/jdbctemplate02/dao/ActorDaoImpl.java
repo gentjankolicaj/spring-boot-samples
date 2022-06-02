@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import springboot.samples.jdbctemplate02.entity.Actor;
+import springboot.samples.jdbctemplate02.domain.Actor;
 import springboot.samples.jdbctemplate02.mapper.ActorRowMapper;
 
 import java.util.List;

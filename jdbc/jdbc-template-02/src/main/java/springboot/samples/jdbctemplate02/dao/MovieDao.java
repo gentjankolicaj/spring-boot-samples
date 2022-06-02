@@ -1,6 +1,6 @@
 package springboot.samples.jdbctemplate02.dao;
 
-import springboot.samples.jdbctemplate02.entity.Movie;
+import springboot.samples.jdbctemplate02.domain.Movie;
 
 import java.util.List;
 import java.util.Optional;
