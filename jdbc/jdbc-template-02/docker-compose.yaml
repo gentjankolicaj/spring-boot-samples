@@ -29,23 +29,10 @@ services:
       - mysql_net
     restart: always
 
-  derby:
-    container_name: apache_derby_cont
-    image: datagrip/derby-server:latest
-    ports:
-      - "1527:1527"
-    networks:
-      - apache_derby_net
-    restart: always
-
-
-
 networks:
   postgres_net:
     driver: bridge
   mysql_net:
-    driver: bridge
-  apache_derby_net:
     driver: bridge
 
 volumes:

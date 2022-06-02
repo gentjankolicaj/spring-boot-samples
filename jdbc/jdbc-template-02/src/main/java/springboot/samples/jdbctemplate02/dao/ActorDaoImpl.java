@@ -1,6 +1,7 @@
 package springboot.samples.jdbctemplate02.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import springboot.samples.jdbctemplate02.entity.Actor;
@@ -12,7 +13,8 @@ import java.util.Optional;
 @Repository
 public class ActorDaoImpl implements ActorDao {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate postgresJdbcTemplate;
+    private final JdbcTemplate mysqlJdbcTemplate;
     private final ActorRowMapper actorRowMapper;
     private final String SELECT_ALL = "SELECT id, name, surname, birthday, birthplace FROM actor LIMIT 1000;";
     private final String SELECT_BY_ID = "SELECT id, name, surname, birthday, birthplace FROM actor where id=?;";
@@ -22,33 +24,37 @@ public class ActorDaoImpl implements ActorDao {
 
 
     @Autowired
-    public ActorDaoImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ActorDaoImpl(@Qualifier("mysqlJdbcTemplate") JdbcTemplate mysqlJdbcTemplate, @Qualifier("postgresJdbcTemplate") JdbcTemplate postgresJdbcTemplate) {
+        this.mysqlJdbcTemplate = mysqlJdbcTemplate;
+        this.postgresJdbcTemplate = postgresJdbcTemplate;
         this.actorRowMapper = new ActorRowMapper();
     }
 
     @Override
     public List<Actor> selectActors() {
-        return jdbcTemplate.query(SELECT_ALL, actorRowMapper);
+        return mysqlJdbcTemplate.query(SELECT_ALL, actorRowMapper);
     }
 
     @Override
     public Optional<Actor> selectActorById(Long actorId) {
-        return jdbcTemplate.query(SELECT_BY_ID, actorRowMapper, actorId).stream().findFirst();
+        return mysqlJdbcTemplate.query(SELECT_BY_ID, actorRowMapper, actorId).stream().findFirst();
     }
 
     @Override
     public int insertActor(Actor actor) {
-        return jdbcTemplate.update(INSERT, actor.getId(), actor.getName(), actor.getSurname(), actor.getBirthday(), actor.getBirthplace());
+        postgresJdbcTemplate.update(INSERT, actor.getId(), actor.getName(), actor.getSurname(), actor.getBirthday(), actor.getBirthplace());
+        return mysqlJdbcTemplate.update(INSERT, actor.getId(), actor.getName(), actor.getSurname(), actor.getBirthday(), actor.getBirthplace());
     }
 
     @Override
     public int updateActor(Long actorId, Actor actor) {
-        return jdbcTemplate.update(UPDATE, actor.getName(), actor.getSurname(), actor.getBirthday(), actor.getBirthplace(), actorId);
+        postgresJdbcTemplate.update(UPDATE, actor.getName(), actor.getSurname(), actor.getBirthday(), actor.getBirthplace(), actorId);
+        return mysqlJdbcTemplate.update(UPDATE, actor.getName(), actor.getSurname(), actor.getBirthday(), actor.getBirthplace(), actorId);
     }
 
     @Override
     public int deleteActor(Long actorId) {
-        return jdbcTemplate.update(DELETE, actorId);
+        postgresJdbcTemplate.update(DELETE, actorId);
+        return mysqlJdbcTemplate.update(DELETE, actorId);
     }
 }

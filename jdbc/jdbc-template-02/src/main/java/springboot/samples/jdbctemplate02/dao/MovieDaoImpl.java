@@ -1,6 +1,7 @@
 package springboot.samples.jdbctemplate02.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import springboot.samples.jdbctemplate02.entity.Movie;
@@ -12,7 +13,8 @@ import java.util.Optional;
 @Repository
 public class MovieDaoImpl implements MovieDao {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate postgresJdbcTemplate;
+    private final JdbcTemplate mysqlJdbcTemplate;
     private final MovieRowMapper movieRowMapper;
 
     private final String SELECT_ALL = "SELECT id, name, release_date FROM movie LIMIT 1000;";
@@ -22,33 +24,37 @@ public class MovieDaoImpl implements MovieDao {
     private final String DELETE = "DELETE FROM movie WHERE id=?;";
 
     @Autowired
-    public MovieDaoImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public MovieDaoImpl(@Qualifier("mysqlJdbcTemplate") JdbcTemplate mysqlJdbcTemplate, @Qualifier("postgresJdbcTemplate") JdbcTemplate postgresJdbcTemplate) {
+        this.mysqlJdbcTemplate = mysqlJdbcTemplate;
+        this.postgresJdbcTemplate = postgresJdbcTemplate;
         this.movieRowMapper = new MovieRowMapper();
     }
 
     @Override
     public List<Movie> selectMovies() {
-        return jdbcTemplate.query(SELECT_ALL, movieRowMapper);
+        return mysqlJdbcTemplate.query(SELECT_ALL, movieRowMapper);
     }
 
     @Override
     public Optional<Movie> selectMovieById(Long movieId) {
-        return jdbcTemplate.query(SELECT_BY_ID, movieRowMapper, movieId).stream().findFirst();
+        return mysqlJdbcTemplate.query(SELECT_BY_ID, movieRowMapper, movieId).stream().findFirst();
     }
 
     @Override
     public int insertMovie(Movie movie) {
-        return jdbcTemplate.update(INSERT, movie.getId(), movie.getName(), movie.getReleaseDate());
+        postgresJdbcTemplate.update(INSERT, movie.getId(), movie.getName(), movie.getReleaseDate());
+        return mysqlJdbcTemplate.update(INSERT, movie.getId(), movie.getName(), movie.getReleaseDate());
     }
 
     @Override
     public int updateMovie(Long movieId, Movie movie) {
-        return jdbcTemplate.update(UPDATE, movie.getName(), movie.getReleaseDate(), movieId);
+        postgresJdbcTemplate.update(UPDATE, movie.getName(), movie.getReleaseDate(), movieId);
+        return mysqlJdbcTemplate.update(UPDATE, movie.getName(), movie.getReleaseDate(), movieId);
     }
 
     @Override
     public int deleteMovie(Long movieId) {
-        return jdbcTemplate.update(DELETE, movieId);
+        postgresJdbcTemplate.update(DELETE, movieId);
+        return mysqlJdbcTemplate.update(DELETE, movieId);
     }
 }
