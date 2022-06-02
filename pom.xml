@@ -44,7 +44,7 @@
         <nexus-staging-maven.version>1.6.13</nexus-staging-maven.version>
 
         <spring-cloud.version>2021.0.3-SNAPSHOT</spring-cloud.version>
-        <spring-boot.version>2.7.0</spring-boot.version>
+        <spring-boot.version>2.6.8</spring-boot.version>
         <mysql.version>8.0.29</mysql.version>
         <postgresql.version>42.3.6</postgresql.version>
         <lombok.version>1.18.24</lombok.version>
@@ -203,26 +203,6 @@
                 </executions>
             </plugin>
 
-
-            <!-- The resources plugin copies files from input resource directories to an output directory.
-            This plugin has three goals, which are different only in how the resources and output directories are specified. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven-resources.version}</version>
-                <configuration>
-                    <outputDirectory>output-resources</outputDirectory>
-                    <resources>
-                        <resource>
-                            <directory>input-resources</directory>
-                            <excludes>
-                                <exclude>*.png</exclude>
-                            </excludes>
-                            <filtering>true</filtering>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
 
 
             <!-- The verifier plugin has only one goal – verify. This goal verifies the existence or non-existence of files and directories,

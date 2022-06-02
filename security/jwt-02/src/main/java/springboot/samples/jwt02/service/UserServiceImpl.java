@@ -26,16 +26,19 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public AppUser saveUser(AppUser user) {
-        return null;
+        log.info("Saving new user to db");
+       return userRepository.save(user);
     }
 
     @Override
     public AppRole saveRole(AppRole role) {
+        log.info("Saving new role to db.");
         return roleRepository.save(role);
     }
 
     @Override
     public void addRoleToUser(String username, String roleName) {
+       log.info("Adding role: {} to user with username:{}",roleName,username);
       AppUser user=userRepository.findByUsername(username);
       AppRole role=roleRepository.findByName(roleName);
       if(user!=null){
@@ -45,6 +48,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public AppUser getUser(String username) {
+        log.info("Fetching user by username {}",username);
         AppUser user=userRepository.findByUsername(username);
         if(user==null)
             throw new UserNotFoundException(String.format("User with username %s not found.",username));
@@ -53,6 +57,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public AppUser getUser(Long userId) {
+        log.info("Fetching user by id {}",userId);
         Optional<AppUser> optionalAppUser=userRepository.findById(userId);
         if(optionalAppUser.isEmpty())
             throw new UserNotFoundException(String.format("User with id %s not found.",userId));
@@ -61,6 +66,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<AppUser> getUsers() {
+        log.info("Fetching all users");
                 return userRepository.findAll();
     }
 }
