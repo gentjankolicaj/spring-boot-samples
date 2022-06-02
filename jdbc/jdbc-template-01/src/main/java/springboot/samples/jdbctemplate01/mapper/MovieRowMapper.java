@@ -10,6 +10,6 @@ import java.time.LocalDate;
 public class MovieRowMapper implements RowMapper<Movie> {
     @Override
     public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new Movie(rs.getLong("id"), rs.getString("name"), LocalDate.parse(rs.getString("release_date")));
+        return new Movie(rs.getLong("id"), rs.getString("name"), rs.getString("release_date")!=null ? LocalDate.parse(rs.getString("release_date")) : null);
     }
 }

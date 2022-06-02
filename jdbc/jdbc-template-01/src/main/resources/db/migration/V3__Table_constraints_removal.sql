@@ -1,5 +1,3 @@
-
-
 alter table actor drop COLUMN birthday;
 alter table actor add column birthday DATE;
 
