@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.samples.jwt02.domain.AppRole;
 import springboot.samples.jwt02.domain.AppUser;
+import springboot.samples.jwt02.dto.RoleToUserForm;
 import springboot.samples.jwt02.exception.UserNotFoundException;
 import springboot.samples.jwt02.repository.RoleRepository;
 import springboot.samples.jwt02.repository.UserRepository;
@@ -37,7 +38,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addRoleToUser(String username, String roleName) {
+    public void addRoleToUser(RoleToUserForm roleToUserForm){
+            String username =roleToUserForm.getUsername();
+            String roleName=roleToUserForm.getRoleName();
        log.info("Adding role: {} to user with username:{}",roleName,username);
       AppUser user=userRepository.findByUsername(username);
       AppRole role=roleRepository.findByName(roleName);
