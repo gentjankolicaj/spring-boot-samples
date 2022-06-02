@@ -12,6 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>springboot.samples</groupId>
     <artifactId>jwt-01</artifactId>
+    <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>jwt-01</name>
     <description>jwt-01</description>
@@ -100,7 +101,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
                 <configuration>
                     <excludes>
                         <exclude>

@@ -19,6 +19,7 @@
 
     <modules>
         <module>jwt-01</module>
+        <module>jwt-02</module>
     </modules>
 
 
