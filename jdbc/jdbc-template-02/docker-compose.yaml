@@ -32,7 +32,8 @@ services:
   derby:
     container_name: apache_derby_cont
     image: datagrip/derby-server:latest
-    port: "1527:1527"
+    ports:
+      - "1527:1527"
     networks:
       - apache_derby_net
     restart: always
