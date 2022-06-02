@@ -12,6 +12,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>springboot.samples</groupId>
 	<artifactId>jdbc-template-02</artifactId>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jdbc-template-02</name>
 	<description>Demo project for Spring Boot</description>
@@ -19,7 +20,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -41,6 +42,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -84,152 +92,11 @@
 
 
 	<build>
-		<resources>
-			<resource>
-				<directory>resources</directory>
-				<targetPath>${project.build.outputDirectory}</targetPath>
-				<includes>
-					<include>application.properties</include>
-				</includes>
-			</resource>
-		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot.version}</version>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>${maven-clean.version}</version>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>output-resources</directory>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire.version}</version>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>${maven-failsafe.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-						<configuration></configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven-resources.version}</version>
-				<configuration>
-					<outputDirectory>output-resources</outputDirectory>
-					<resources>
-						<resource>
-							<directory>input-resources</directory>
-							<excludes>
-								<exclude>*.png</exclude>
-							</excludes>
-							<filtering>true</filtering>
-						</resource>
-					</resources>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-verifier-plugin</artifactId>
-				<version>${maven-verifier.version}</version>
-				<configuration>
-					<verificationFile>input-resources/verifications.xml</verificationFile>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-install-plugin</artifactId>
-				<version>${maven-install.version}</version>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>${maven-deploy.version}</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>${nexus-staging-maven.version}</version>
-				<executions>
-					<execution>
-						<id>default-deploy</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<serverId>nexus</serverId>
-					<nexusUrl>http://localhost:8081/nexus/</nexusUrl>
-					<skipStaging>true</skipStaging>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${maven-site.version}</version>
 			</plugin>
 		</plugins>
 	</build>
