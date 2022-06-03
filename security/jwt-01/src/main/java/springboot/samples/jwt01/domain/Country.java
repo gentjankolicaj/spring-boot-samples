@@ -1,4 +1,4 @@
-package springboot.samples.jwt01.model;
+package springboot.samples.jwt01.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

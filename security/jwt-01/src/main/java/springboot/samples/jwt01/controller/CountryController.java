@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import springboot.samples.jwt01.model.Country;
+import springboot.samples.jwt01.domain.Country;
 
 @Controller
 @RequestMapping(CountryController.COUNTRY_URI)

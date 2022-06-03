@@ -18,7 +18,6 @@ public class InfoController {
 	
 	@Autowired
 	private ApplicationContext applicationContext;
-
 	
 	
 	@RequestMapping(path= {"","/","/*"})
