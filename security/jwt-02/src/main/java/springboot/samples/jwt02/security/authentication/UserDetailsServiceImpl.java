@@ -32,6 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         AppUser user=appUserOptional.get();
         String password=user.getPassword();
         String dbUsername=user.getUsername();
+
         Collection<SimpleGrantedAuthority> authorities=getSimpleGrantedAuthorities(user.getRoles());
         return new BasicUserDetails(dbUsername,password,authorities);
     }

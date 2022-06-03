@@ -26,10 +26,10 @@ public class Jwt02Application {
 			userService.saveRole(new AppRole(null,"MANAGER"));
 			userService.saveRole(new AppRole(null,"ADMIN"));
 
-			userService.saveUser(new AppUser(null,"john0","doe","john117",null,null));
-			userService.saveUser(new AppUser(null,"john1","doe1","john118",null,null));
-			userService.saveUser(new AppUser(null,"john2","doe2","john119",null,null));
-			userService.saveUser(new AppUser(null,"john3","doe3","john120",null,null));
+			userService.saveUser(new AppUser(null,"john0","doe","john117","cortana",null));
+			userService.saveUser(new AppUser(null,"john1","doe1","john118","cortana1",null));
+			userService.saveUser(new AppUser(null,"john2","doe2","john119","cortana2",null));
+			userService.saveUser(new AppUser(null,"john3","doe3","john120","cortana3",null));
 
 			userService.addRoleToUser(new RoleToUserForm("john117","ANON"));
 			userService.addRoleToUser(new RoleToUserForm("john117","USER"));

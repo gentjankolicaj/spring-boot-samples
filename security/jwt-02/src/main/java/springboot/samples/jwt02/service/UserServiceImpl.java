@@ -2,6 +2,7 @@ package springboot.samples.jwt02.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.samples.jwt02.domain.AppRole;
@@ -22,12 +23,14 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
 
     @Override
     public AppUser saveUser(AppUser user) {
         log.info("Saving new user to db");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
        return userRepository.save(user);
     }
 

@@ -9,7 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -39,26 +39,26 @@ public class BasicAuthenticationFilter extends UsernamePasswordAuthenticationFil
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-        User user=(User) authentication.getPrincipal();
+       UserDetails userDetails=(UserDetails) authentication.getPrincipal();
         Algorithm algorithm=Algorithm.HMAC256("G!idSo*Y1S&q"); //Must be saved somewhere in encrypted file & loaded during startup
 
         String accessToken= JWT.create()
-                .withSubject(user.getUsername()) //Subject something unique about user ,example userId or username is if is unique
+                .withSubject(userDetails.getUsername()) //Subject something unique about user ,example userId or username is if is unique
                 .withExpiresAt(new Date(System.currentTimeMillis()*10 *60 * 1000)) // 10 minutes after expires
-                .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .withClaim("roles",userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm); //Sign token
 
         //Refresh token has longer expiry date
         String refreshToken= JWT.create()
-                .withSubject(user.getUsername()) //Subject something unique about user ,example userId or username is if is unique
+                .withSubject(userDetails.getUsername()) //Subject something unique about user ,example userId or username is if is unique
                 .withExpiresAt(new Date(System.currentTimeMillis()*10 *60 * 1000)) // 10 minutes after expires
-                .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .withClaim("roles",userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm); //Sign
 
 
         //Added tokens to http headers
-        response.setHeader("access_token",accessToken);
-        response.setHeader("refresh_token",refreshToken);
+        response.setHeader("Access_token",accessToken);
+        response.setHeader("Refresh_token",refreshToken);
     }
 
     @Override
