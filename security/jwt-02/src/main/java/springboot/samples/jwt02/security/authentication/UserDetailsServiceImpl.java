@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String dbUsername=user.getUsername();
 
         Collection<SimpleGrantedAuthority> authorities=getSimpleGrantedAuthorities(user.getRoles());
-        return new BasicUserDetails(dbUsername,password,authorities);
+        return new CustomUserDetails(dbUsername,password,authorities);
     }
 
     private Collection<SimpleGrantedAuthority> getSimpleGrantedAuthorities(Collection<AppRole> roles) {

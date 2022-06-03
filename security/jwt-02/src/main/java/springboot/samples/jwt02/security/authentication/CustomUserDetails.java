@@ -6,11 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class BasicUserDetails implements UserDetails {
+public class CustomUserDetails implements UserDetails {
     private final String username;
     private final String password;
     private final Collection<SimpleGrantedAuthority> authorities;
-    public BasicUserDetails(String username, String password, Collection<SimpleGrantedAuthority> authorities) {
+    public CustomUserDetails(String username, String password, Collection<SimpleGrantedAuthority> authorities) {
         this.username=username;
         this.password=password;
         this.authorities=authorities;

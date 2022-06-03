@@ -2,6 +2,7 @@ package springboot.samples.jwt02.security.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,11 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
-public class BasicAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
 
@@ -57,8 +60,16 @@ public class BasicAuthenticationFilter extends UsernamePasswordAuthenticationFil
 
 
         //Added tokens to http headers
-        response.setHeader("Access_token",accessToken);
-        response.setHeader("Refresh_token",refreshToken);
+        // response.setHeader("Access_token",accessToken);
+       // response.setHeader("Refresh_token",refreshToken);
+
+        //Tokens written on response body
+        Map<String,String> tokens=new HashMap<>();
+        tokens.put("access_token",accessToken);
+        tokens.put("refresh_token",refreshToken);
+
+        //write value to output stream
+        new ObjectMapper().writeValue(response.getOutputStream(),tokens);
     }
 
     @Override
