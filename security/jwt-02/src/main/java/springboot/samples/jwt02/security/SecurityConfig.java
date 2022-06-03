@@ -36,7 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Update filter process url because is inherited from UsernamePasswordAuthenticationFilter
         customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
 
-
         //Disable csrf
         http.csrf().disable();
 
@@ -57,7 +56,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Create instance of filter & add filter to http
         http.addFilter(customAuthenticationFilter);
     }
-
 
     @Bean
     @Override
