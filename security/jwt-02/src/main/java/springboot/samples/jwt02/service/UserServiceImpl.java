@@ -42,20 +42,20 @@ public class UserServiceImpl implements UserService{
             String username =roleToUserForm.getUsername();
             String roleName=roleToUserForm.getRoleName();
        log.info("Adding role: {} to user with username:{}",roleName,username);
-      AppUser user=userRepository.findByUsername(username);
+      Optional<AppUser> optionalAppUser=userRepository.findByUsername(username);
       AppRole role=roleRepository.findByName(roleName);
-      if(user!=null){
-          user.addRole(role);
+      if(!optionalAppUser.isEmpty()) {
+          optionalAppUser.get().addRole(role);
       }else throw new UserNotFoundException(String.format("User with username %s not found.",username));
     }
 
     @Override
     public AppUser getUser(String username) {
         log.info("Fetching user by username {}",username);
-        AppUser user=userRepository.findByUsername(username);
-        if(user==null)
+        Optional<AppUser> optionalAppUser=userRepository.findByUsername(username);
+        if(optionalAppUser.isEmpty())
             throw new UserNotFoundException(String.format("User with username %s not found.",username));
-        return user;
+        return optionalAppUser.get();
     }
 
     @Override
