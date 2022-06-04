@@ -16,9 +16,9 @@
     <description>Test spring-boot-samples</description>
     <packaging>pom</packaging>
 
-
     <modules>
-        <module>test-containers</module>
+        <module>test-container-mysql</module>
+        <module>test-container-postgres</module>
         <module>test-embedded</module>
     </modules>
 
