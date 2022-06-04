@@ -44,10 +44,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Make session stateless
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        //Unsecured API
+        //Unauthenticated API
+        //Allow token refresh without authentication
+        //Login & refresh token requests must not pass through authorization filter.
+        //Passing through authorization filter will cause to fail because they are not authenticated
         http.authorizeRequests().antMatchers("/api/v1/login").permitAll();
+        http.authorizeRequests().antMatchers("/api/v1/token/refresh/**").permitAll();
 
-        //Secured API
+
+        //Authenticated & authorized  API
         //Some request authorization config
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/user/**").hasAnyAuthority("ANON");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/user/**").hasAnyAuthority("ADMIN");
@@ -59,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(customAuthenticationFilter);
 
         //Add filter before other filters
-        // because we need to intercept any request before other filters
+        //We need to intercept any request before other filters
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }

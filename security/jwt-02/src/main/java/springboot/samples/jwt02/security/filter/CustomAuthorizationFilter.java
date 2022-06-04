@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,12 +29,12 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //Check if trying to log in
-        if(request.getServletPath().equals("/api/v1/login")){
+        //Check if request path is directed to login or refresh token
+        if(request.getServletPath().equals("api/v1/login") || request.getServletPath().equals("api/v1/token/refresh")){
             filterChain.doFilter(request,response);
         }else{
             try {
-                String authorizationHeader = request.getHeader("Authorization");
+                String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
                 if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
                     String token = authorizationHeader.substring("Bearer ".length());
                     Algorithm algorithm = Algorithm.HMAC256("G!idSo*Y1S&q".getBytes());
@@ -57,7 +58,6 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 Map<String,String> errorMap=new HashMap<>();
                 errorMap.put("error",e.getMessage());
                 response.setContentType(APPLICATION_JSON_VALUE);
-
                 new ObjectMapper().writeValue(response.getOutputStream(),errorMap);
             }
         }
