@@ -12,7 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import springboot.samples.jwt02.security.filter.CustomAuthenticationFilter;
+import springboot.samples.jwt02.security.filter.CustomAuthorizationFilter;
 
 
 @Configuration
@@ -55,6 +57,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //Create instance of filter & add filter to http
         http.addFilter(customAuthenticationFilter);
+
+        //Add filter before other filters
+        // because we need to intercept any request before other filters
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
 
     @Bean
