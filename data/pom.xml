@@ -21,6 +21,7 @@
         <module>data-jpa</module>
         <module>data-jpa-mysql</module>
         <module>data-jpa-postgresql</module>
+        <module>data-mongodb</module>
         <module>sql-databases</module>
     </modules>
 
