@@ -20,7 +20,7 @@
         <module>data-rest</module>
         <module>data</module>
         <module>jdbc</module>
-
+        <module>kafka</module>
 
     </modules>
 
@@ -229,7 +229,7 @@
              This plugin is included in the super POM, therefore a POM doesn't need to explicitly include it.
             The most noteworthy goal of this plugin is install, which is bound to the install phase by default.
             Other goals are install-file used to automatically install external artifacts into the local repository,
-            and help showing information on the plugin itself.In most cases, the install plugin doesn't need any custom configuration.
+            and help to show information on the plugin itself.In most cases, the install plugin doesn't need any custom configuration.
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
