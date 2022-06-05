@@ -17,6 +17,8 @@
     <modules>
         <module>./kafka-01/kafka-01-producer</module>
         <module>./kafka-01/kafka-01-consumer</module>
+        <module>./kafka-02/kafka-02-producer</module>
+        <module>./kafka-02/kafka-02-consumer</module>
     </modules>
 
 </project>

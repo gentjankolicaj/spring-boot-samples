@@ -11,12 +11,16 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>springboot.samples</groupId>
-	<artifactId>kafka-01-consumer</artifactId>
+	<artifactId>kafka-02-consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kafka-01-consumer</name>
+	<name>kafka-02-consumer</name>
 	<description>Demo project for Spring Boot</description>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -51,6 +55,11 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>kafka</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>mongodb</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
