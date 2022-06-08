@@ -1,4 +1,4 @@
-package springboot.samples.datajpa_mysql.entity;
+package springboot.samples.datajpa_mysql.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,16 +11,14 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="location")
-public class Location implements Serializable {
+@Table(name="department")
+public class Department implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long departmentId;
+    private String departmentName;
+    private Long managerId;
     private Long locationId;
-    private String streetAddress;
-    private String postalCode;
-    private String city;
-    private String stateProvince;
-    private Long countryId;
 
 }

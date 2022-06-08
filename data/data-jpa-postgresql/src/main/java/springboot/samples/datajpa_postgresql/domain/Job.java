@@ -1,4 +1,4 @@
-package springboot.samples.datajpa_mysql.entity;
+package springboot.samples.datajpa_postgresql.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="job")
+@Table(name = "job")
 public class Job implements Serializable {
 
     @Id

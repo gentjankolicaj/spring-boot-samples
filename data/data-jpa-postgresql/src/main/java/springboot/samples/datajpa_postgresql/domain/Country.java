@@ -1,4 +1,4 @@
-package springboot.samples.datajpa_mysql.entity;
+package springboot.samples.datajpa_postgresql.domain;
 
 
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="country")
+@Table(name = "country")
 public class Country implements Serializable {
 
     @Id

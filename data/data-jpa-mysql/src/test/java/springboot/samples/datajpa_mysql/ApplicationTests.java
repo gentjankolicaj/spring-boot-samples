@@ -1,10 +1,10 @@
-package springboot.samples.datajpa;
+package springboot.samples.datajpa_mysql;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DataJpaApplicationTests {
+class ApplicationTests {
 
     @Test
     void contextLoads() {

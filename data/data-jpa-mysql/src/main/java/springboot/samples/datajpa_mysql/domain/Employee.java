@@ -1,4 +1,4 @@
-package springboot.samples.datajpa_mysql.entity;
+package springboot.samples.datajpa_mysql.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

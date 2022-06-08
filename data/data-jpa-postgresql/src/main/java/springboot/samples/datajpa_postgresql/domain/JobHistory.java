@@ -1,4 +1,4 @@
-package springboot.samples.datajpa_mysql.entity;
+package springboot.samples.datajpa_postgresql.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,8 +12,8 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="job_history")
-public class JobHistory  implements Serializable {
+@Table(name = "job_history")
+public class JobHistory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

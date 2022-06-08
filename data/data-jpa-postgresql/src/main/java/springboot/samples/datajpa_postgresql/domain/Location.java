@@ -1,4 +1,4 @@
-package springboot.samples.datajpa.entity;
+package springboot.samples.datajpa_postgresql.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="location")
+@Table(name = "location")
 public class Location implements Serializable {
 
     @Id

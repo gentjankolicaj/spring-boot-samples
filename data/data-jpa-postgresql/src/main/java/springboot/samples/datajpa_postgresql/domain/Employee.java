@@ -1,4 +1,4 @@
-package springboot.samples.datajpa_postgresql.entity;
+package springboot.samples.datajpa_postgresql.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
