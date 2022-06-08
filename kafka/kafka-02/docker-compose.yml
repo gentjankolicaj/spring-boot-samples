@@ -8,7 +8,14 @@ version: '3'
 # The same logic applies for the kafka-1 and kafka-2 services, where they'll be listening on ports 29092 and 39092, respectively.
 
 
+networks:
+  kafka-net:
+    driver: bridge
+  mongodb_net:
+    driver: bridge
+
 services:
+
   zookeeper-1:
     container_name: kafka_zookeeper_1
     image: confluentinc/cp-zookeeper:latest
@@ -17,6 +24,9 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "22181:2181"
+    networks:
+      - kafka-net
+
 
   zookeeper-2:
     container_name: kafka_zookeeper_2
@@ -26,6 +36,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "32181:2181"
+    networks:
+      - kafka-net
 
   kafka-1:
     container_name: kafka_1
@@ -35,6 +47,8 @@ services:
       - zookeeper-2
     ports:
       - "29092:29092"
+    networks:
+      - kafka-net
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181
@@ -51,6 +65,8 @@ services:
       - zookeeper-2
     ports:
       - "39092:39092"
+    networks:
+      - kafka-net
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181
@@ -80,9 +96,6 @@ services:
     networks:
       - mongodb_net
 
-networks:
-  mongodb_net:
-    driver: bridge
 
 volumes:
   mongodb-data:

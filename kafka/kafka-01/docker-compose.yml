@@ -8,6 +8,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "22181:2181"
+    networks:
+      - kafka-net
 
   zookeeper-2:
     container_name: kafka_zookeeper_2
