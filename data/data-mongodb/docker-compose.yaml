@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mongodb:
+    container_name: mongodb_cont
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=data-mongodb
+      - MONGO_INITDB_USERNAME=data-mongodb-username
+      - MONGO_INITDB_PASSWORD=data-mongodb-password
+      - MONGO_INITDB_ROOT_USERNAME=johndoe
+      - MONGO_INITDB_ROOT_PASSWORD=johndoe@P4ssw()rd
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/mongodb-data
+      - mongodb-config:/data/mongodb-config
+    networks:
+      - mongodb_net
+
+networks:
+  mongodb_net:
+    driver: bridge
+
+volumes:
+  mongodb-data:
+  mongodb-config:

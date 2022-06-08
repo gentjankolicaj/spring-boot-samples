@@ -12,7 +12,7 @@ services:
       - "27017":"27017"
     volumes:
       - mongodb-data:/data/mongodb-data
-      - mongo-config:/data/configdb
+      - mongodb-config:/data/mongodb-config
     networks:
       - mongo_net
 
@@ -21,5 +21,5 @@ networks:
     driver: bridge
 
 volumes:
-  mongo-db-data:
-  mongo-config:
+  mongodb-data:
+  mongodb-config:
