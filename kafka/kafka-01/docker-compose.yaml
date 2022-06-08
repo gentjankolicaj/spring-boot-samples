@@ -1,7 +1,7 @@
 version: '3'
 services:
   zookeeper-1:
-    container_name: kafka_zookeeper_1_cont
+    container_name: kafka_zookeeper_1
     image: confluentinc/cp-zookeeper:latest
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -10,7 +10,7 @@ services:
       - "22181:2181"
 
   zookeeper-2:
-    container_name: kafka_zookeeper_2_cont
+    container_name: kafka_zookeeper_2
     image: confluentinc/cp-zookeeper:latest
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -19,7 +19,7 @@ services:
       - "32181:2181"
 
   kafka-1:
-    container_name: kafka_1_cont
+    container_name: kafka_1
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper-1
@@ -35,7 +35,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   kafka-2:
-    container_name: kafka_2_cont
+    container_name: kafka_2
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper-1
