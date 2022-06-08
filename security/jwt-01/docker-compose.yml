@@ -1,6 +1,7 @@
+version: '3'
 services:
   mysql:
-    container_name: mysql_cont
+    container_name: mysql_ct
     image: mysql:8.0.28
     environment:
       MYSQL_USER: johndoe

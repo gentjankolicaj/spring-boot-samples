@@ -1,4 +1,4 @@
-package springboot.samples.kafka01_consumer.cron;
+package springboot.samples.kafka02_producer.cron;
 
 public interface CronService {
 
