@@ -10,9 +10,9 @@ import springboot.samples.kafka02_producer.service.LocationService;
 
 import java.time.LocalDateTime;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CronServiceImpl implements CronService {
 
      private final LocationService locationService;
