@@ -19,6 +19,7 @@
         <module>security</module>
         <module>data-rest</module>
         <module>data</module>
+        <module>data-source</module>
         <module>jdbc</module>
         <module>kafka</module>
 
