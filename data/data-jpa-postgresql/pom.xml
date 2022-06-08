@@ -13,6 +13,7 @@
     <groupId>springboot.samples</groupId>
     <artifactId>data-jpa-postgresql</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>data-jpa-postgresql</name>
     <description>data-jpa-postgresql</description>
 
