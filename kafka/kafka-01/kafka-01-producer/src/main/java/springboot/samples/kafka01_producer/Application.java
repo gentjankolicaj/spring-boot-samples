@@ -2,12 +2,14 @@ package springboot.samples.kafka01_producer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-public class Kafka01ProducerApplication {
+@EnableScheduling
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Kafka01ProducerApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

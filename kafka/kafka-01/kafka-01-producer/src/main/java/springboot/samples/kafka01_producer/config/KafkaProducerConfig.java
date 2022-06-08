@@ -3,6 +3,7 @@ package springboot.samples.kafka01_producer.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,11 +44,11 @@ public class KafkaProducerConfig {
 
     /**
      * - Create & register kafkaTemplate , we will use it to produce events
-     *
      * @param producerFactory
      * @return
      */
-    public KafkaTemplate<String,String> kafkaTemplate(ProducerFactory<String,String> producerFactory){
+    @Bean
+    public KafkaTemplate<String,String> kafkaTemplate(@Qualifier("producerFactory") ProducerFactory<String,String> producerFactory){
         return new KafkaTemplate<>(producerFactory);
     }
 
