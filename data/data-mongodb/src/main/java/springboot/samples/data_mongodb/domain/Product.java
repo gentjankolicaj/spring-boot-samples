@@ -1,16 +1,19 @@
 package springboot.samples.data_mongodb.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Document
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+@Data
+public class Product implements Serializable {
 
     @Id
     private Long id;

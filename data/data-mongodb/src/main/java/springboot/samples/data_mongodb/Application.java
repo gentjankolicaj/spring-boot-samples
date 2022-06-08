@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import springboot.samples.data_mongodb.domain.Product;
 import springboot.samples.data_mongodb.repository.ProductRepository;
 
@@ -16,23 +17,24 @@ import java.util.List;
 @Slf4j
 public class Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
-	@Autowired
-	ProductRepository productRepository;
+    @Autowired
+    ProductRepository productRepository;
 
-	CommandLineRunner run(){
-	return args-> {
-		List<Product> products = new ArrayList<>();
-		for (long i = 0; i < 200; i++) {
-			products.add(new Product(i,Long.valueOf(i).intValue(),"name-"+i,"description-"+i,20.22,20.0,i+13,LocalDateTime.now(),LocalDateTime.now()));
-		}
-		log.info("Inserting {} "+products);
-		productRepository.saveAll(products);
-	};
-	}
+    @Bean
+    CommandLineRunner run() {
+        return args -> {
+            List<Product> products = new ArrayList<>();
+            for (long i = 0; i < 200; i++) {
+                products.add(new Product(i, Long.valueOf(i).intValue(), "name-" + i, "description-" + i, 20.22, 20.0, i + 13, LocalDateTime.now(), LocalDateTime.now()));
+            }
+            log.info("Inserting {} " + products);
+            productRepository.saveAll(products);
+        };
+    }
 
 
 }
