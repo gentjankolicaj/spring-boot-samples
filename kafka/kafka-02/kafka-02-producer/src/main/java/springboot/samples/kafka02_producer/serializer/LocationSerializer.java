@@ -24,7 +24,7 @@ public class LocationSerializer implements Serializer<Location> {
         try{
             return SerializationUtils.serialize(location);
         }catch ( RuntimeException e){
-            throw new SerializationException("Error serializing value ",e);
+            throw new SerializationException("Error serialization ",e);
         }
     }
 }
