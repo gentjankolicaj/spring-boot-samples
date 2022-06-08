@@ -21,7 +21,7 @@ public class LocationServiceImpl implements LocationService {
         LocalDateTime start=LocalDateTime.now();
 
         //produce event to kafka
-        kafkaTemplate.send(KafkaTopicConfig.LOCATION_TOPIC_NAME,location.toString());
+        kafkaTemplate.send(KafkaTopicConfig.LOCATION_TOPIC_NAME,location);
 
         LocalDateTime end=LocalDateTime.now();
         log.info("Method run() invoked:'{}' finished :'{}' duration:{}, event sent:{}",start,end, ChronoUnit.SECONDS.between(start,end),location);

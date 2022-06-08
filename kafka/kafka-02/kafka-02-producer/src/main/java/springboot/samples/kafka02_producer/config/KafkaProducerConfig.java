@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import springboot.samples.kafka02_producer.domain.Location;
+import springboot.samples.kafka02_producer.serializer.LocationSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +32,7 @@ public class KafkaProducerConfig {
         Map<String,Object> props=new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, LocationSerializer.class);
         return props;
     }
 
@@ -38,7 +40,7 @@ public class KafkaProducerConfig {
      * - Create & register producer factor
      */
     @Bean
-    public ProducerFactory<String,String> producerFactory(){
+    public ProducerFactory<String, Location> producerFactory(){
         return new DefaultKafkaProducerFactory<>(getProducerConfig());
     }
 
@@ -48,7 +50,7 @@ public class KafkaProducerConfig {
      * @return
      */
     @Bean
-    public KafkaTemplate<String,String> kafkaTemplate(@Qualifier("producerFactory") ProducerFactory<String,String> producerFactory){
+    public KafkaTemplate<String, Location> kafkaTemplate(@Qualifier("producerFactory") ProducerFactory<String, Location> producerFactory){
         return new KafkaTemplate<>(producerFactory);
     }
 
