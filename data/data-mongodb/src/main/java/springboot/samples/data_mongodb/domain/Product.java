@@ -1,11 +1,15 @@
 package springboot.samples.data_mongodb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @Document
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
