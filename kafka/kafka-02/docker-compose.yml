@@ -70,7 +70,7 @@ services:
       - MONGO-INITDB_ROOT_USERNAME=johndoe
       - MONGO-INITDB_ROOT_PASSWORD=johndoe@P4ssw()rd
     ports:
-      - "27017": "27017"
+      - "27017:27017"
     volumes:
       - mongodb-data:/data/mongodb-data
       - mongodb-config:/data/mongodb-config
