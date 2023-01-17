@@ -23,6 +23,7 @@
         <module>jdbc</module>
         <module>kafka</module>
         <module>gateway</module>
+        <module>liquibase</module>
     </modules>
 
 
@@ -46,7 +47,7 @@
 
         <spring-cloud.version>2021.0.5</spring-cloud.version>
         <spring-boot.version>2.7.7</spring-boot.version>
-        <mysql.version>8.0.29</mysql.version>
+        <mysql.version>8.0.31</mysql.version>
         <postgresql.version>42.3.6</postgresql.version>
         <lombok.version>1.18.24</lombok.version>
         <testcontainers.version>1.17.2</testcontainers.version>

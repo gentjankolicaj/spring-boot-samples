@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+  internal_network:
+    driver: bridge
+
+volumes:
+  mysql_volume: { }
+
+services:
+  mysql-service:
+    image: mysql:8.0.31
+    container_name: mysql-service
+    ports:
+      - "3306:3306"
+    networks:
+      internal_network:
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=P4ssw0rd
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=P4ssw0rd
+    volumes:
+      - mysql_volume:/var/lib/mysql
+      - ./docker-script/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
