@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>springboot.samples</groupId>
-    <artifactId>parent</artifactId>
+    <artifactId>project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>parent</name>
+
+    <name>project</name>
     <description>Parent project for all spring-boot-samples</description>
     <packaging>pom</packaging>
 
 
     <modules>
-
         <module>web</module>
         <module>test</module>
         <module>session</module>
@@ -22,7 +22,7 @@
         <module>data-source</module>
         <module>jdbc</module>
         <module>kafka</module>
-
+        <module>gateway</module>
     </modules>
 
 
@@ -44,8 +44,8 @@
         <maven-site.version>4.0.0-M1</maven-site.version>
         <nexus-staging-maven.version>1.6.13</nexus-staging-maven.version>
 
-        <spring-cloud.version>2021.0.3-SNAPSHOT</spring-cloud.version>
-        <spring-boot.version>2.6.8</spring-boot.version>
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-boot.version>2.7.7</spring-boot.version>
         <mysql.version>8.0.29</mysql.version>
         <postgresql.version>42.3.6</postgresql.version>
         <lombok.version>1.18.24</lombok.version>
