@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  internal_network:
+    driver: bridge
+
+services:
+  api-gateway-service:
+    build:
+      context: api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway-service
+    restart: on-failure
+    networks:
+      internal_network:
+    ports:
+      - "8080:8080"
+    depends_on:
+      - discovery-server-service
+
+  discovery-server-service:
+    build:
+      context: discovery-server
+      dockerfile: Dockerfile
+    container_name: discovery-server-service
+    restart: on-failure
+    networks:
+      internal_network:
+    ports:
+      - "8761:8761"
