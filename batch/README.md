@@ -1,3 +1,3 @@
 # batch-samples
 
-Different spring boot samples with test libs & frameworks.
+Different spring boot samples with batch libs.
