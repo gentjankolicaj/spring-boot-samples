@@ -1,0 +1,22 @@
+services:
+  postgres:
+    container_name: postgres_ct
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: johndoe
+      POSTGRES_PASSWORD: johndoe@P4ssw()rd
+      PGDATA: /data/postgres
+    volumes:
+      - postgres_vol:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres_net
+    restart: always
+
+networks:
+  postgres_net:
+    driver: bridge
+
+volumes:
+  postgres_vol:

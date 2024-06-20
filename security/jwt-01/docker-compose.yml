@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysql_ct
+    image: mysql:8.0.28
+    environment:
+      MYSQL_USER: johndoe
+      MYSQL_PASSWORD: johndoe@P4ssw()rd
+      MYSQL_ROOT_PASSWORD: toor
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_vol:/var/lib/mysql
+    networks:
+      - mysql_net
+    restart: always
+
+networks:
+  mysql_net:
+    driver: bridge
+
+volumes:
+  mysql_vol:

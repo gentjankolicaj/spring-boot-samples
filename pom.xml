@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>springboot.samples</groupId>
+    <artifactId>project</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>project</name>
+    <description>Parent project for all spring-boot-samples</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>batch</module>
+        <module>web</module>
+        <module>test</module>
+        <module>session</module>
+        <module>security</module>
+        <module>data-rest</module>
+        <module>data</module>
+        <module>data-source</module>
+        <module>jdbc</module>
+        <module>kafka</module>
+        <module>gateway</module>
+        <module>liquibase</module>
+    </modules>
+
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven-clean.version>3.2.0</maven-clean.version>
+        <maven-compiler.version>3.8.1</maven-compiler.version>
+        <maven-surefire.version>3.0.0-M6</maven-surefire.version>
+        <maven-failsafe.version>3.0.0-M6</maven-failsafe.version>
+        <maven-resources.version>3.2.0</maven-resources.version>
+        <maven-verifier.version>1.1</maven-verifier.version>
+        <maven-install.version>3.0.0-M1</maven-install.version>
+        <maven-deploy.version>3.0.0-M2</maven-deploy.version>
+        <maven-site.version>4.0.0-M1</maven-site.version>
+        <nexus-staging-maven.version>1.6.13</nexus-staging-maven.version>
+
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-boot.version>2.7.7</spring-boot.version>
+        <mysql.version>8.0.31</mysql.version>
+        <postgresql.version>42.3.6</postgresql.version>
+        <lombok.version>1.18.24</lombok.version>
+        <testcontainers.version>1.17.2</testcontainers.version>
+        <apache-commons-lang.version>3.12.0</apache-commons-lang.version>
+
+        <junit-jupiter-api.version>5.8.2</junit-jupiter-api.version>
+        <assertj-core.version>3.22.0</assertj-core.version>
+        <mockito-core.version>4.5.1</mockito-core.version>
+        <mockito-junit-jupiter.version>4.5.1</mockito-junit-jupiter.version>
+
+    </properties>
+
+
+    <dependencies>
+
+        <!-- Testing dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter-api.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- For adding mockito extension to junit -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons-lang.version}</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <!--
+       In order for Maven to be able to deploy the artifacts it creates in the package phase of the build,
+       it needs to define the repository information where the packaged artifacts will be deployed, via the distributionManagement element:
+       A hosted, public Snapshots repository comes out of the box on Nexus, so there's no need to create or configure anything further.
+       Nexus makes it easy to determine the URLs of its hosted repositories –
+       each repository displays the exact entry to be added in the <distributionManagement> of the project pom,under the Summary tab.
+       -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <build>
+        <plugins>
+
+            <!-- The clean lifecycle has only one phase named clean that is automatically bound to the only goal of the
+            plugin with the same name. This goal can, therefore, be executed with the command mvn clean.
+            The clean plugin is already included in the super POM, thus we can use it without specifying anything in the project's POM.
+            This plugin, as its name implies, cleans the files and directories generated during the previous build. By default, the plugin removes the target directory.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>output-resources</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+
+            <!--
+            The compiler plugin is used to compile the source code of a Maven project.
+            This plugin has two goals, which are already bound to specific phases of the default lifecycle:
+            compile – compile main source files
+            testCompile – compile test source files
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+
+            <!-- Surefire plugin for generating xml reports from running test classes (classes that end with *Test.java,
+           plugin has only one goal:test , mvn test will execute it or default build. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire.version}</version>
+            </plugin>
+
+
+            <!-- Failsafe plugin runs and verifies tests using different goals.
+            A test failure in the integration-test phase doesn't fail the build straight away,allowing the phase post-integration-test to execute,
+            where clean-up operations are performed.
+            Failed tests, if any, are only reported during the verify phase,after the integration test environment has been torn down properly.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration></configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+
+            <!-- The verifier plugin has only one goal – verify. This goal verifies the existence or non-existence of files and directories,
+             optionally checking file content against a regular expression.
+             Despite its name, the verify goal is bound to the integration-test phase by default rather than the verify phase. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-verifier-plugin</artifactId>
+                <version>${maven-verifier.version}</version>
+                <configuration>
+                    <verificationFile>input-resources/verifications.xml</verificationFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+             Install plugin is used to add artifacts to the local repository.
+             This plugin is included in the super POM, therefore a POM doesn't need to explicitly include it.
+            The most noteworthy goal of this plugin is install, which is bound to the install phase by default.
+            Other goals are install-file used to automatically install external artifacts into the local repository,
+            and help to show information on the plugin itself.In most cases, the install plugin doesn't need any custom configuration.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install.version}</version>
+            </plugin>
+
+
+            <!--
+             Deploy plugin is used during the deploy phase, pushing artifacts to a remote repository to share with other developers.
+             In addition to the artifact itself, this plugin ensures that all associated information, such as POMs, metadata or hash values, is correct.
+             The deploy plugin is specified in the super POM, hence it's not necessary to add this plugin to the POM.
+             The most noticeable goal of this plugin is deploy, bound to the deploy phase by default.
+             -->
+            <!-- Since I am using nexus staging plugin for deployment I deactivate maven-deploy-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+                    <skipStaging>true</skipStaging>
+                </configuration>
+            </plugin>
+
+
+            <!-- The Maven site lifecycle has two phases bound to goals of the site plugin by default: the site phase is bound to the site goal,
+            and the site-deploy phase is bound to the deploy goal.Here are the descriptions of those goals:
+           site – generate a site for a single project; the generated site only shows information about the artifacts specified in the POM
+           deploy – deploy the generated site to the URL specified in the distributionManagement element of the POM
+           In addition to site and deploy, the site plugin has several other goals to customize the content of the generated files and to control the deployment process.
+           We can use this plugin without adding it to the POM as the super POM already includes it.
+           To generate a site, just run mvn site:site or mvn site.
+           To view the generated site on a local machine, run mvn site:run. This command will deploy the site to a Jetty web server at the address localhost:8080.
+           The run goal of this plugin isn't implicitly bound to a phase in the site lifecycle, hence we need to call it directly.
+           -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

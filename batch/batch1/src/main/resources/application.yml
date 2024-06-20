@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  batch:
+    initialize-schema: ALWAYS
+    job:
+      enabled: false
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:toor8}
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/batch_example
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
