@@ -1,3 +1,4 @@
+
 package springboot.samples.integration.adapters;
 
 import jakarta.persistence.Column;
@@ -17,15 +18,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Entity
-@Table(name = "tweet")
-public class Tweet {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(nullable = false)
-  private Long id;
+public class TweetDTO {
 
   private String creatorId;
   private String postId;
@@ -33,11 +26,8 @@ public class Tweet {
   private LocalDateTime createDate;
 
 
-  @Override
-  public boolean equals(Object obj) {
-    if (!(obj instanceof Tweet tweet)) {
-      return false;
-    }
-    return id.equals(tweet.id);
+  public static Tweet toModel(TweetDTO dto){
+    return new Tweet(null,dto.getCreatorId(),dto.getPostId(),dto.getContent(),dto.getCreateDate());
   }
+
 }

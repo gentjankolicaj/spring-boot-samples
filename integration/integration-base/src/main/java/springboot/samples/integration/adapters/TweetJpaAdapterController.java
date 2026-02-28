@@ -17,9 +17,9 @@ public class TweetJpaAdapterController {
   TweetJpaGateway tweetJpaGateway;
 
   @PostMapping("save")
-  public void save(@RequestBody Tweet tweet) {
-    tweetJpaGateway.save(tweet);
-    log.info("Send request object '{}' to outboundJpaChannel...", tweet);
+  public void save(@RequestBody TweetDTO tweetDTO) {
+    tweetJpaGateway.save(TweetDTO.toModel(tweetDTO));
+    log.info("Send request object '{}' to outboundJpaChannel...", tweetDTO);
   }
 
 }

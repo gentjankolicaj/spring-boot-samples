@@ -6,7 +6,7 @@ import org.springframework.integration.annotation.MessagingGateway;
 @MessagingGateway
 public interface TweetJpaGateway {
 
-  @Gateway(replyChannel = "outboundJpaChannel")
+  @Gateway(requestChannel = "outboundJpaChannel")
   void save(Tweet tweet);
 
 }

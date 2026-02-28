@@ -25,3 +25,13 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     springboot.samples.integration: DEBUG
 
+
+# Springdoc config.
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+  show-actuator: true

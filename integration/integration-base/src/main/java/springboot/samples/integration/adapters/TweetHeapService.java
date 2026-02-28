@@ -17,7 +17,7 @@ public class TweetHeapService {
   public Tweet get(Long id) {
     Tweet tweet = null;
     for (Tweet var : set) {
-      if (var.getTweetId().equals(id)) {
+      if (var.getId().equals(id)) {
         tweet = var;
         break;
       }

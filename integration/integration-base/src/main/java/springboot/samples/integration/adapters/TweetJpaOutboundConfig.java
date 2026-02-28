@@ -31,7 +31,7 @@ public class TweetJpaOutboundConfig {
     return IntegrationFlow.from(outboundJpaChannel())
         .handle(Jpa.outboundAdapter(entityManager)
                 .entityClass(Tweet.class)
-                .persistMode(PersistMode.PERSIST), // Use MERGE if updating existing records
+                .persistMode(PersistMode.MERGE), // Use MERGE if updating existing records
             ConsumerEndpointSpec::transactional)           // Essential for database writes
         .get();
   }
