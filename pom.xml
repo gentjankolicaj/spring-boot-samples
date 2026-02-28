@@ -4,10 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>springboot.samples</groupId>
-    <artifactId>project</artifactId>
+    <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
-    <name>spring-boot-samples</name>
+    <name>parent</name>
     <description>Parent project for all spring-boot-samples</description>
     <packaging>pom</packaging>
 
@@ -24,6 +23,7 @@
         <module>kafka</module>
         <module>gateway</module>
         <module>liquibase</module>
+        <module>integration</module>
     </modules>
 
 
@@ -49,7 +49,7 @@
         <spring-boot.version>2.7.7</spring-boot.version>
         <mysql.version>8.0.31</mysql.version>
         <postgresql.version>42.3.6</postgresql.version>
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
         <testcontainers.version>1.17.2</testcontainers.version>
         <apache-commons-lang.version>3.18.0</apache-commons-lang.version>
 
@@ -61,6 +61,17 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons-lang.version}</version>
+        </dependency>
 
         <!-- Testing dependencies -->
         <dependency>
@@ -89,17 +100,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${apache-commons-lang.version}</version>
-        </dependency>
     </dependencies>
 
     <repositories>
@@ -139,7 +139,6 @@
 
     <build>
         <plugins>
-
             <!-- The clean lifecycle has only one phase named clean that is automatically bound to the only goal of the
             plugin with the same name. This goal can, therefore, be executed with the command mvn clean.
             The clean plugin is already included in the super POM, thus we can use it without specifying anything in the project's POM.
@@ -158,7 +157,6 @@
                 </configuration>
             </plugin>
 
-
             <!--
             The compiler plugin is used to compile the source code of a Maven project.
             This plugin has two goals, which are already bound to specific phases of the default lifecycle:
@@ -171,9 +169,15 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                </configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>1.18.34</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
             </plugin>
-
 
             <!-- Surefire plugin for generating xml reports from running test classes (classes that end with *Test.java,
            plugin has only one goal:test , mvn test will execute it or default build. -->
@@ -182,7 +186,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
             </plugin>
-
 
             <!-- Failsafe plugin runs and verifies tests using different goals.
             A test failure in the integration-test phase doesn't fail the build straight away,allowing the phase post-integration-test to execute,
@@ -199,11 +202,9 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
-                        <configuration></configuration>
                     </execution>
                 </executions>
             </plugin>
-
 
 
             <!-- The verifier plugin has only one goal – verify. This goal verifies the existence or non-existence of files and directories,
@@ -237,7 +238,6 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <version>${maven-install.version}</version>
             </plugin>
-
 
             <!--
              Deploy plugin is used during the deploy phase, pushing artifacts to a remote repository to share with other developers.
