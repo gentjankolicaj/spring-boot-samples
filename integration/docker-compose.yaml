@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0.31
+    container_name: spring-integration-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: spring_integration
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: springpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
