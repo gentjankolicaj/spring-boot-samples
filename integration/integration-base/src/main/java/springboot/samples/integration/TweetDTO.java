@@ -1,4 +1,3 @@
-
 package springboot.samples.integration;
 
 import lombok.AllArgsConstructor;
@@ -14,14 +13,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TweetDTO {
 
-  private String creatorId;
-  private String postId;
-  private String content;
-  private LocalDateTime createDate;
+    private String creatorId;
+    private String postId;
+    private String content;
+    private LocalDateTime createDate;
 
 
-  public static Tweet toModel(TweetDTO dto){
-    return new Tweet(null,dto.getCreatorId(),dto.getPostId(),dto.getContent(),dto.getCreateDate());
-  }
+    public static Tweet toModel(TweetDTO dto) {
+        return new Tweet(null, dto.getCreatorId(), dto.getPostId(), dto.getContent(), dto.getCreateDate());
+    }
 
 }

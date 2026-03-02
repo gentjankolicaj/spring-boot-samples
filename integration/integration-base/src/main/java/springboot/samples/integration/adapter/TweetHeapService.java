@@ -15,7 +15,7 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public class TweetHeapService {
 
-  private final Set<Tweet> set = new HashSet<>();
+    private final Set<Tweet> set = new HashSet<>();
 
     @ServiceActivator(inputChannel = "tweet.heap.channel")
     public void save(Message<Tweet> tweetMessage) {
@@ -24,17 +24,17 @@ public class TweetHeapService {
             set.add(payload);
             log.info("Saved {}", payload);
         }
-  }
-
-  public Tweet get(Long id) {
-    Tweet tweet = null;
-    for (Tweet var : set) {
-      if (var.getId().equals(id)) {
-        tweet = var;
-        break;
-      }
     }
-    return tweet;
-  }
+
+    public Tweet get(Long id) {
+        Tweet tweet = null;
+        for (Tweet var : set) {
+            if (var.getId().equals(id)) {
+                tweet = var;
+                break;
+            }
+        }
+        return tweet;
+    }
 
 }

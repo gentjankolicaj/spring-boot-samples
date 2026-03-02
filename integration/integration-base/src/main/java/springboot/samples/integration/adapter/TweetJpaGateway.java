@@ -7,7 +7,7 @@ import springboot.samples.integration.Tweet;
 @MessagingGateway
 public interface TweetJpaGateway {
 
-  @Gateway(requestChannel = "outboundJpaChannel")
-  void save(Tweet tweet);
+    @Gateway(requestChannel = "outboundJpaChannel")
+    void save(Tweet tweet);
 
 }

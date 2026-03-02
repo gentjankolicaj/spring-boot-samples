@@ -1,7 +1,5 @@
-package springboot.samples.integration.adapter;
+package springboot.samples.integration.enricher;
 
-
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,18 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springboot.samples.integration.Tweet;
 
-@Slf4j
+/**
+ *
+ * @author gentjan kolicaj
+ * @since 3/2/26 10:34 AM
+ *
+ */
 @RestController
-@RequestMapping("/integration/adapter/tweetheap")
-public class TweetHeapAdapterController {
+@RequestMapping("/integration/tweet/enricher")
+public class TweetEnricherController {
 
     @Autowired
-    TweetHeapGateway tweetHeapGateway;
+    TweetEnricherGateway gateway;
 
-    @PostMapping("save")
-    public void save(@RequestBody Tweet tweet) {
-        tweetHeapGateway.save(tweet);
-        log.info("Send request object: {}", tweet);
+    @PostMapping("/doEnrich")
+    public void doEnrich(@RequestBody Tweet tweet) {
+        gateway.doEnrich(tweet);
     }
 
 }

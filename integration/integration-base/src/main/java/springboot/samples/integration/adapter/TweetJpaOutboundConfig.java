@@ -17,24 +17,24 @@ import springboot.samples.integration.Tweet;
 public class TweetJpaOutboundConfig {
 
 
-  @PersistenceContext
-  EntityManager entityManager;
+    @PersistenceContext
+    EntityManager entityManager;
 
-  // 1. Define the input channel
-  @Bean
-  MessageChannel outboundJpaChannel() {
-    return new DirectChannel();
-  }
+    // 1. Define the input channel
+    @Bean
+    MessageChannel outboundJpaChannel() {
+        return new DirectChannel();
+    }
 
-  // 2. Define the Flow: Channel -> JPA Adapter
-  @Bean
-  public IntegrationFlow outboundJpaFlow() {
-    return IntegrationFlow.from(outboundJpaChannel())
-        .handle(Jpa.outboundAdapter(entityManager)
-                .entityClass(Tweet.class)
-                        .persistMode(PersistMode.MERGE),           // Use MERGE if updating existing records
-            ConsumerEndpointSpec::transactional)           // Essential for database writes
-        .get();
-  }
+    // 2. Define the Flow: Channel -> JPA Adapter
+    @Bean
+    public IntegrationFlow outboundJpaFlow() {
+        return IntegrationFlow.from(outboundJpaChannel())
+                .handle(Jpa.outboundAdapter(entityManager)
+                                .entityClass(Tweet.class)
+                                .persistMode(PersistMode.MERGE),           // Use MERGE if updating existing records
+                        ConsumerEndpointSpec::transactional)           // Essential for database writes
+                .get();
+    }
 
 }

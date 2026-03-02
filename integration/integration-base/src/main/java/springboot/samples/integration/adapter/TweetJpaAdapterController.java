@@ -14,13 +14,13 @@ import springboot.samples.integration.TweetDTO;
 @RequestMapping("/integration/adapter/tweetjpa")
 public class TweetJpaAdapterController {
 
-  @Autowired
-  TweetJpaGateway tweetJpaGateway;
+    @Autowired
+    TweetJpaGateway tweetJpaGateway;
 
-  @PostMapping("save")
-  public void save(@RequestBody TweetDTO tweetDTO) {
-    tweetJpaGateway.save(TweetDTO.toModel(tweetDTO));
-    log.info("Send request object '{}' to outboundJpaChannel...", tweetDTO);
-  }
+    @PostMapping("save")
+    public void save(@RequestBody TweetDTO tweetDTO) {
+        tweetJpaGateway.save(TweetDTO.toModel(tweetDTO));
+        log.info("Send request object '{}' to outboundJpaChannel...", tweetDTO);
+    }
 
 }
