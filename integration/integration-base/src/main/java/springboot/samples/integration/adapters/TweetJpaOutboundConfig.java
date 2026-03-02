@@ -11,6 +11,7 @@ import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.jpa.dsl.Jpa;
 import org.springframework.integration.jpa.support.PersistMode;
 import org.springframework.messaging.MessageChannel;
+import springboot.samples.integration.Tweet;
 
 @Configuration
 public class TweetJpaOutboundConfig {
@@ -31,7 +32,7 @@ public class TweetJpaOutboundConfig {
     return IntegrationFlow.from(outboundJpaChannel())
         .handle(Jpa.outboundAdapter(entityManager)
                 .entityClass(Tweet.class)
-                .persistMode(PersistMode.MERGE), // Use MERGE if updating existing records
+                        .persistMode(PersistMode.MERGE),           // Use MERGE if updating existing records
             ConsumerEndpointSpec::transactional)           // Essential for database writes
         .get();
   }

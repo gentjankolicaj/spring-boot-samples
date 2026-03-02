@@ -1,5 +1,4 @@
-package springboot.samples.integration.adapters;
-
+package springboot.samples.integration.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springboot.samples.integration.Tweet;
 
+/**
+ *
+ * @author gentjan kolicaj
+ * @since 3/2/26 8:34 AM
+ *
+ */
 @Slf4j
 @RestController
-@RequestMapping("/integration/adapter/tweetheap")
-public class TweetHeapAdapterController {
+@RequestMapping("/integration/filter/tweet")
+public class TweetFilterController {
 
-  @Autowired
-  TweetHeapGateway tweetHeapGateway;
+    @Autowired
+    TweetFilterGateway tweetFilterGateway;
 
-  @PostMapping("save")
-  public void save(@RequestBody Tweet tweet) {
-    tweetHeapGateway.save(tweet);
-    log.info("Send request object: {}", tweet);
-  }
+    @PostMapping("/notNegativeId")
+    public void notNegativeId(@RequestBody Tweet tweet) {
+        tweetFilterGateway.notNegativeId(tweet);
+    }
 
 }
