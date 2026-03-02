@@ -1,4 +1,4 @@
-package springboot.samples.integration.adapters;
+package springboot.samples.integration.transformer;
 
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
@@ -7,12 +7,13 @@ import springboot.samples.integration.Tweet;
 /**
  *
  * @author gentjan kolicaj
- * @since 3/2/26 8:22 AM
+ * @since 3/2/26 10:35 AM
  *
  */
 @MessagingGateway
-public interface TweetHeapGateway {
+public interface TweetTransformerGateway {
 
-    @Gateway(requestChannel = "tweet.heap.channel")
-    void save(Tweet tweet);
+    @Gateway(requestChannel = "tweet.transformer.inputChannel")
+    void add10ToId(Tweet tweet);
+
 }

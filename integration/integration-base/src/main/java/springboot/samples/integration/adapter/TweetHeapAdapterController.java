@@ -1,4 +1,4 @@
-package springboot.samples.integration.adapters;
+package springboot.samples.integration.adapter;
 
 
 import lombok.extern.slf4j.Slf4j;

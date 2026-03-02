@@ -1,4 +1,4 @@
-package springboot.samples.integration.adapters;
+package springboot.samples.integration.adapter;
 
 
 import org.springframework.context.annotation.Bean;

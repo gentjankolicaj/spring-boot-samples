@@ -1,4 +1,4 @@
-package springboot.samples.integration.adapters;
+package springboot.samples.integration.adapter;
 
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
