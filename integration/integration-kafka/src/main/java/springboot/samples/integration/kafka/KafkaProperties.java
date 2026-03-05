@@ -15,6 +15,7 @@ public class KafkaProperties {
 
   private Producer producer;
   private Consumer consumer;
+  private Admin admin;
 
 
   @Getter
@@ -37,6 +38,16 @@ public class KafkaProperties {
     private String bootstrapServers;
     private String groupId;
     private String autoOffsetReset;
+  }
+
+  @Getter
+  @Setter
+  @AllArgsConstructor
+  @NoArgsConstructor
+  public static class Admin {
+
+    private String bootstrapServers;
+
   }
 
 }

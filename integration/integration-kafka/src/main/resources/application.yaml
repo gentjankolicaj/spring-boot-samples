@@ -20,13 +20,15 @@ spring:
   # Kafka configuration
   kafka:
     producer:
-      bootstrapServers: localhost:9092
+      bootstrapServers: localhost:19092
       acks: all
       retries: 3
     consumer:
-      bootstrapServers: localhost:9092
+      bootstrapServers: localhost:19092
       groupId: demo-group
       autoOffsetReset: earliest
+    admin:
+      bootstrapServers: localhost:19092
 
 # Logging levels for debugging the Integration Flow
 logging:
