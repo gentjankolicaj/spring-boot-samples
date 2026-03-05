@@ -17,6 +17,17 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
 
+  # Kafka configuration
+  kafka:
+    producer:
+      bootstrapServers: localhost:9092
+      acks: all
+      retries: 3
+    consumer:
+      bootstrapServers: localhost:9092
+      groupId: demo-group
+      autoOffsetReset: earliest
+
 # Logging levels for debugging the Integration Flow
 logging:
   level:

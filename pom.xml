@@ -206,7 +206,6 @@
                 </executions>
             </plugin>
 
-
             <!-- The verifier plugin has only one goal – verify. This goal verifies the existence or non-existence of files and directories,
              optionally checking file content against a regular expression.
              Despite its name, the verify goal is bound to the integration-test phase by default rather than the verify phase. -->
