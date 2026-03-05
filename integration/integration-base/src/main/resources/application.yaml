@@ -1,7 +1,7 @@
 spring:
   application:
     name: integration
-  # Database Configuration
+  # Database configuration
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/spring_integration?allowPublicKeyRetrieval=true&useSSL=false}
     username: ${SPRING_DATASOURCE_USERNAME:springuser}
@@ -26,7 +26,7 @@ logging:
     springboot.samples.integration: DEBUG
 
 
-# Springdoc config.
+# Springdoc configuration
 springdoc:
   api-docs:
     path: /v3/api-docs
