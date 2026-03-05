@@ -17,18 +17,18 @@ import org.springframework.messaging.MessageHandler;
 import springboot.samples.integration.kafka.Greet;
 
 @Configuration
-public class OutboundChannelAdapterConfig {
+public class OCAConfig {
 
   private final KafkaTemplate<String, String> kafkaTemplate;
 
   @Autowired
-  public OutboundChannelAdapterConfig(KafkaTemplate<String, String> kafkaTemplate) {
+  public OCAConfig(KafkaTemplate<String, String> kafkaTemplate) {
     this.kafkaTemplate = kafkaTemplate;
   }
 
   // 1. Create topic 'outbound.oca'
   @Bean
-  public NewTopic newTopic() {
+  public NewTopic newTopicOCA() {
     return TopicBuilder.name("outbound.oca")
         .partitions(3)
         .replicas(1)
@@ -58,7 +58,7 @@ public class OutboundChannelAdapterConfig {
   // 6. Create channel outbound channel 'outbound.oca' for channel -> kafka.
   @Bean
   @ServiceActivator(inputChannel = "outbound.oca")
-  public MessageHandler kafkaProducerMessageHandler() {
+  public MessageHandler kafkaProducerMessageHandlerOCA() {
     KafkaProducerMessageHandler<String, String> handler = new KafkaProducerMessageHandler<>(
         kafkaTemplate);
     handler.setTopicExpression(new LiteralExpression("outbound.oca"));

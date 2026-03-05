@@ -1,0 +1,1 @@
+- Sample with outbound channel adapter.
