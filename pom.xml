@@ -24,6 +24,7 @@
         <module>gateway</module>
         <module>liquibase</module>
         <module>integration</module>
+        <module>state-machine</module>
     </modules>
 
 
