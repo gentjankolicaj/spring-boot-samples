@@ -12,10 +12,22 @@
     <name>state-machine-base</name>
     <description>Demo project with Spring Boot + State Machine + REST</description>
 
+    <properties>
+        <spring-statemachine.version>3.2.1</spring-statemachine.version>
+    </properties>
+
     <dependencies>
+        <!-- web dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- state machine dependencies -->
+        <dependency>
+            <groupId>org.springframework.statemachine</groupId>
+            <artifactId>spring-statemachine-core</artifactId>
+            <version>${spring-statemachine.version}</version>
         </dependency>
 
         <!-- springdoc & swagger dependencies -->
