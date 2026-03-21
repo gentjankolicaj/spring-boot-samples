@@ -1,6 +1,6 @@
 spring:
   application:
-    name: state-machine-base
+    name: tenis-state-machine
   # Database configuration
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/spring_state_machine?allowPublicKeyRetrieval=true&useSSL=false}

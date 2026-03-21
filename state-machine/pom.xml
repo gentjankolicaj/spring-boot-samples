@@ -23,6 +23,7 @@
 
     <modules>
         <module>state-machine-base</module>
+         <module>tenis-state-machine</module>
     </modules>
 
     <dependencyManagement>
