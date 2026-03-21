@@ -8,10 +8,10 @@ package springboot.samples.statemachine.simple;
  */
 public enum SimpleStateMachineStateType {
 
-    SSTART, S0, S1, S2, S3, SFINISH;
+  SSTART, S0, S1, S2, S3, SFINISH;
 
 
-    public static SimpleStateMachineStateType[] allIntermediates() {
-        return new SimpleStateMachineStateType[]{S0, S1, S2, S3};
-    }
+  public static SimpleStateMachineStateType[] allIntermediates() {
+    return new SimpleStateMachineStateType[]{S0, S1, S2, S3};
+  }
 }

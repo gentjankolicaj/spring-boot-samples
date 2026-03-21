@@ -1,8 +1,11 @@
 package springboot.samples.statemachine.tweet;
 
-import lombok.*;
-
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -12,19 +15,19 @@ import java.time.LocalDateTime;
 public class Tweet {
 
 
-    private Long id;
+  private Long id;
 
-    private String creatorId;
-    private String postId;
-    private String content;
-    private LocalDateTime createDate;
+  private String creatorId;
+  private String postId;
+  private String content;
+  private LocalDateTime createDate;
 
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Tweet tweet)) {
-            return false;
-        }
-        return id.equals(tweet.id);
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Tweet tweet)) {
+      return false;
     }
+    return id.equals(tweet.id);
+  }
 }

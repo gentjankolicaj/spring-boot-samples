@@ -26,7 +26,7 @@
         <!-- state machine dependencies -->
         <dependency>
             <groupId>org.springframework.statemachine</groupId>
-            <artifactId>spring-statemachine-core</artifactId>
+            <artifactId>spring-statemachine-starter</artifactId>
             <version>${spring-statemachine.version}</version>
         </dependency>
 

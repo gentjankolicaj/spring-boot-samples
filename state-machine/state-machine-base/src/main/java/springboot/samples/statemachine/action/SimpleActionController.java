@@ -1,4 +1,4 @@
-package springboot.samples.statemachine.simple;
+package springboot.samples.statemachine.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/statemachine/simple")
-public class SimpleController {
+@RequestMapping("/statemachine/simpleaction")
+public class SimpleActionController {
 
-  private final SimpleStateMachineService service;
+  private final SimpleActionStateMachineService service;
 
   @Autowired
-  public SimpleController(SimpleStateMachineService service) {
+  public SimpleActionController(SimpleActionStateMachineService service) {
     this.service = service;
   }
 
