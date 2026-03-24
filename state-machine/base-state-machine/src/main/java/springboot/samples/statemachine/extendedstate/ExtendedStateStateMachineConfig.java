@@ -33,8 +33,7 @@ public class ExtendedStateStateMachineConfig extends
                 .withStates()
                 .initial(ExtendedStateStateMachineStateType.SSTART)
                 .end(ExtendedStateStateMachineStateType.SFINISH)
-                .states(
-                        new HashSet<>(Arrays.asList(ExtendedStateStateMachineStateType.allIntermediates())))
+                .states(new HashSet<>(Arrays.asList(ExtendedStateStateMachineStateType.allIntermediates())))
 
                 // Actions can be attached to the states themselves:
                 // This state definition function accepts an operation to be executed when the machine is in the target state and, optionally, an error action handler.
@@ -96,7 +95,6 @@ public class ExtendedStateStateMachineConfig extends
 
         };
     }
-
 
     public Action<ExtendedStateStateMachineStateType, String> s2ExecuteAction() {
         return ctx -> log.info("s2ExecuteAction: {}", ctx.getTarget().getId());
