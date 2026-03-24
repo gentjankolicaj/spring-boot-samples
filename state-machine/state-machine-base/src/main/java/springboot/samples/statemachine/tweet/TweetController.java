@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/tweet")
 public class TweetController {
 
-  @PostMapping
-  public void save(@RequestBody TweetDTO tweetDTO) {
-  }
+    @PostMapping
+    public void save(@RequestBody TweetDTO tweetDTO) {
+    }
 
 }

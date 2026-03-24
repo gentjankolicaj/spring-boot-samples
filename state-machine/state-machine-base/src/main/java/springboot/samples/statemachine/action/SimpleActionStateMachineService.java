@@ -16,18 +16,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class SimpleActionStateMachineService {
 
-  private final StateMachine<SimpleActionStateMachineStateType, String> stateMachine;
+    private final StateMachine<SimpleActionStateMachineStateType, String> stateMachine;
 
-  @Autowired
-  public SimpleActionStateMachineService(
-      @Qualifier("simpleActionStateMachine") StateMachine<SimpleActionStateMachineStateType, String> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-  }
+    @Autowired
+    public SimpleActionStateMachineService(
+            @Qualifier("simpleActionStateMachine") StateMachine<SimpleActionStateMachineStateType, String> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void sendEvent(String event) {
-    stateMachine.sendEvent(event);
-    log.info("SimpleActionStateMachine state:{}", stateMachine.getState());
-  }
+    public void sendEvent(String event) {
+        stateMachine.sendEvent(event);
+        log.info("SimpleActionStateMachine state:{}", stateMachine.getState());
+    }
 
 }

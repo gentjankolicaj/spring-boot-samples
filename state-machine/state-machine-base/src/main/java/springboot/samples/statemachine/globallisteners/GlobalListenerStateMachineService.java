@@ -16,18 +16,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class GlobalListenerStateMachineService {
 
-  private final StateMachine<GlobalListenerStateMachineStateType, String> stateMachine;
+    private final StateMachine<GlobalListenerStateMachineStateType, String> stateMachine;
 
-  @Autowired
-  public GlobalListenerStateMachineService(
-      @Qualifier("globalListenerStateMachine") StateMachine<GlobalListenerStateMachineStateType, String> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-  }
+    @Autowired
+    public GlobalListenerStateMachineService(
+            @Qualifier("globalListenerStateMachine") StateMachine<GlobalListenerStateMachineStateType, String> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void sendEvent(String event) {
-    stateMachine.sendEvent(event);
-    log.info("GlobalListenerStateMachine state:{}", stateMachine.getState());
-  }
+    public void sendEvent(String event) {
+        stateMachine.sendEvent(event);
+        log.info("GlobalListenerStateMachine state:{}", stateMachine.getState());
+    }
 
 }

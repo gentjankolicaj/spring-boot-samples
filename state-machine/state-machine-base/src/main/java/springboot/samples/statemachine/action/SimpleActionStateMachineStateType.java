@@ -8,11 +8,11 @@ package springboot.samples.statemachine.action;
  */
 public enum SimpleActionStateMachineStateType {
 
-  SSTART, S0, S1, S2, S3, SFINISH;
+    SSTART, S0, S1, S2, S3, SFINISH;
 
 
-  public static SimpleActionStateMachineStateType[] allIntermediates() {
-    return new SimpleActionStateMachineStateType[]{S0, S1};
-  }
+    public static SimpleActionStateMachineStateType[] allIntermediates() {
+        return new SimpleActionStateMachineStateType[]{S0, S1};
+    }
 
 }

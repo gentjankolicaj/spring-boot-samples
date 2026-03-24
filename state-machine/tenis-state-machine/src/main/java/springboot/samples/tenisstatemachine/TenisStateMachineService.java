@@ -9,23 +9,24 @@ import org.springframework.stereotype.Service;
 public class TenisStateMachineService {
 
 
-  private final StateMachine<TenisStateType, String> stateMachine;
+    private final StateMachine<TenisStateType, String> stateMachine;
 
-  @Autowired
-  public TenisStateMachineService(StateMachine<TenisStateType, String> stateMachine) {
-    this.stateMachine = stateMachine;
-  }
+    @Autowired
+    public TenisStateMachineService(StateMachine<TenisStateType, String> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void processInput(String input) {
-    String[] args;
-    if (input == null || input.isBlank()) {
-      args = new String[]{};
-    } else {
-      args = input.split(",");
+    public void processInput(String input) {
+        String[] args;
+        if (input == null || input.isBlank()) {
+            args = new String[]{};
+        } else {
+            args = input.split(",");
+        }
+        for (String event : args) {
+            stateMachine.sendEvent(event);
+        }
     }
-    for (String event : args) {
-      stateMachine.sendEvent(event);
-    }
-  }
 
 }

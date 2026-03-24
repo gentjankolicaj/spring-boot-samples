@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/simpleaction")
 public class SimpleActionController {
 
-  private final SimpleActionStateMachineService service;
+    private final SimpleActionStateMachineService service;
 
-  @Autowired
-  public SimpleActionController(SimpleActionStateMachineService service) {
-    this.service = service;
-  }
+    @Autowired
+    public SimpleActionController(SimpleActionStateMachineService service) {
+        this.service = service;
+    }
 
-  @PostMapping
-  public void inputEvent(@RequestBody String event) {
-    service.sendEvent(event);
-  }
+    @PostMapping
+    public void inputEvent(@RequestBody String event) {
+        service.sendEvent(event);
+    }
 
 }

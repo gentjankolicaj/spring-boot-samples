@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tenisstatemachine/input")
 public class TenisStateMachineController {
 
-  private final TenisStateMachineService stateMachineService;
+    private final TenisStateMachineService stateMachineService;
 
 
-  @Autowired
-  public TenisStateMachineController(TenisStateMachineService stateMachineService) {
-    this.stateMachineService = stateMachineService;
-  }
+    @Autowired
+    public TenisStateMachineController(TenisStateMachineService stateMachineService) {
+        this.stateMachineService = stateMachineService;
+    }
 
-  @PostMapping
-  public void processInput(@RequestBody String input) {
-    stateMachineService.processInput(input);
-  }
+    @PostMapping
+    public void processInput(@RequestBody String input) {
+        stateMachineService.processInput(input);
+    }
 
 }
