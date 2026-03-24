@@ -29,6 +29,12 @@
             <artifactId>spring-statemachine-starter</artifactId>
             <version>${spring-statemachine.version}</version>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.plantuml</groupId>
+            <artifactId>plantuml-mit</artifactId>
+            <version>1.2026.2</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- springdoc & swagger dependencies -->
         <dependency>

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TenisStateMachineApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(TenisStateMachineApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(TenisStateMachineApplication.class, args);
+    }
 
 }

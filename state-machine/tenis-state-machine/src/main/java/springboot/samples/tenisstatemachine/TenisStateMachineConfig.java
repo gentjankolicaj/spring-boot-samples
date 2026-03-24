@@ -18,6 +18,7 @@ public class TenisStateMachineConfig extends StateMachineConfigurerAdapter<Tenis
   private static final String S = "s";
   private static final String O = "o";
 
+
   @Override
   public void configure(StateMachineStateConfigurer<TenisStateType, String> states)
           throws Exception {
@@ -59,7 +60,7 @@ public class TenisStateMachineConfig extends StateMachineConfigurerAdapter<Tenis
             .withExternal().source(TenisStateType._30_15).target(TenisStateType._40_15).event(S).and()
             .withExternal().source(TenisStateType._30_15).target(TenisStateType._30_ALL).event(O).and()
             .withExternal().source(TenisStateType._15_30).target(TenisStateType._30_ALL).event(S).and()
-            .withExternal().source(TenisStateType._15_30).target(TenisStateType._40_15).event(O).and()
+            .withExternal().source(TenisStateType._15_30).target(TenisStateType._15_40).event(O).and()
             .withExternal().source(TenisStateType.LOVE_40).target(TenisStateType._15_40).event(S).and()
             .withExternal().source(TenisStateType.LOVE_40).target(TenisStateType.OPPONENT_WIN).event(O)
             .and()
@@ -91,7 +92,7 @@ public class TenisStateMachineConfig extends StateMachineConfigurerAdapter<Tenis
 
             //Dead phase
             .withExternal().source(TenisStateType.SERVER_WIN).target(TenisStateType.END).event("end").and()
-            .withExternal().source(TenisStateType.SERVER_WIN).target(TenisStateType.END).event("end");
+            .withExternal().source(TenisStateType.OPPONENT_WIN).target(TenisStateType.END).event("end");
 
   }
 

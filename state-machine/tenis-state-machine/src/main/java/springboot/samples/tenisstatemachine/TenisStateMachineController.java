@@ -2,13 +2,13 @@ package springboot.samples.tenisstatemachine;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
-@RequestMapping("/tenisstatemachine/input")
+@RequestMapping("/tenisstatemachine")
 public class TenisStateMachineController {
 
     private final TenisStateMachineService stateMachineService;
@@ -19,9 +19,19 @@ public class TenisStateMachineController {
         this.stateMachineService = stateMachineService;
     }
 
-    @PostMapping
+    @PostMapping("/input")
     public void processInput(@RequestBody String input) {
         stateMachineService.processInput(input);
+    }
+
+    @GetMapping("/uml")
+    public String generateUml() {
+        return stateMachineService.generateUml();
+    }
+
+    @GetMapping(value = "/uml-image", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] generateUmlImage() throws IOException {
+        return stateMachineService.generateUmlImage();
     }
 
 }
