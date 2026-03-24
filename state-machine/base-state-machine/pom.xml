@@ -8,8 +8,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>state-machine-base</artifactId>
-    <name>state-machine-base</name>
+    <artifactId>base-state-machine</artifactId>
+    <name>base-state-machine</name>
     <description>Demo project with Spring Boot + State Machine + REST</description>
 
     <properties>
@@ -27,11 +27,6 @@
         <dependency>
             <groupId>org.springframework.statemachine</groupId>
             <artifactId>spring-statemachine-starter</artifactId>
-            <version>${spring-statemachine.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.statemachine</groupId>
-            <artifactId>spring-statemachine-uml</artifactId>
             <version>${spring-statemachine.version}</version>
         </dependency>
 
