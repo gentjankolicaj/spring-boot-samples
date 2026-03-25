@@ -31,8 +31,8 @@ public class ExtendedStateStateMachineConfig extends
             throws Exception {
         statesConfigurer
                 .withStates()
-                .initial(ExtendedStateStateMachineStateType.SSTART)
-                .end(ExtendedStateStateMachineStateType.SFINISH)
+                .initial(ExtendedStateStateMachineStateType.SINITIAL)
+                .end(ExtendedStateStateMachineStateType.SEND)
                 .states(new HashSet<>(Arrays.asList(ExtendedStateStateMachineStateType.allIntermediates())))
 
                 // Actions can be attached to the states themselves:
@@ -54,7 +54,7 @@ public class ExtendedStateStateMachineConfig extends
             StateMachineTransitionConfigurer<ExtendedStateStateMachineStateType, String> transitions)
             throws Exception {
         transitions.withExternal()
-                .source(ExtendedStateStateMachineStateType.SSTART)
+                .source(ExtendedStateStateMachineStateType.SINITIAL)
                 .target(ExtendedStateStateMachineStateType.S0)
                 .event("0").action(initAction()).and()
                 .withExternal()
@@ -71,7 +71,7 @@ public class ExtendedStateStateMachineConfig extends
                 .event("3").and()
                 .withExternal()
                 .source(ExtendedStateStateMachineStateType.S3)
-                .target(ExtendedStateStateMachineStateType.SFINISH)
+                .target(ExtendedStateStateMachineStateType.SEND)
                 .event("finish");
     }
 

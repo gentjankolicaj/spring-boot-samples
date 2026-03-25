@@ -8,7 +8,7 @@ package springboot.samples.statemachine.guard;
  */
 public enum GuardStateMachineStateType {
 
-    SSTART, S0, S1, S2, S3, SFINISH;
+    SINITIAL, S0, S1, S2, S3, SEND;
 
 
     public static GuardStateMachineStateType[] allIntermediates() {

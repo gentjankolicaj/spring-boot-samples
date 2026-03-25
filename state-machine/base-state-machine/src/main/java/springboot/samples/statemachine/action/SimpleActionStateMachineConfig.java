@@ -31,8 +31,8 @@ public class SimpleActionStateMachineConfig extends
             throws Exception {
         statesConfigurer
                 .withStates()
-                .initial(SimpleActionStateMachineStateType.SSTART)
-                .end(SimpleActionStateMachineStateType.SFINISH)
+                .initial(SimpleActionStateMachineStateType.SINITIAL)
+                .end(SimpleActionStateMachineStateType.SEND)
                 .states(new HashSet<>(Arrays.asList(SimpleActionStateMachineStateType.allIntermediates())))
 
                 // Actions can be attached to the states themselves:
@@ -54,7 +54,7 @@ public class SimpleActionStateMachineConfig extends
             StateMachineTransitionConfigurer<SimpleActionStateMachineStateType, String> transitions)
             throws Exception {
         transitions.withExternal()
-                .source(SimpleActionStateMachineStateType.SSTART)
+                .source(SimpleActionStateMachineStateType.SINITIAL)
                 .target(SimpleActionStateMachineStateType.S0)
                 .event("0").action(initAction()).and()
                 .withExternal()
@@ -70,7 +70,7 @@ public class SimpleActionStateMachineConfig extends
                         SimpleActionStateMachineStateType.S3).event("3").and()
                 .withExternal()
                 .source(SimpleActionStateMachineStateType.S3).target(
-                        SimpleActionStateMachineStateType.SFINISH).event("finish");
+                        SimpleActionStateMachineStateType.SEND).event("finish");
     }
 
     @Bean

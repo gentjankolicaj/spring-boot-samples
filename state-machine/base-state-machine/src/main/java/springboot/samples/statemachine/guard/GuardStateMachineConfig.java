@@ -31,8 +31,8 @@ public class GuardStateMachineConfig extends StateMachineConfigurerAdapter<Guard
             throws Exception {
         statesConfigurer
                 .withStates()
-                .initial(GuardStateMachineStateType.SSTART)
-                .end(GuardStateMachineStateType.SFINISH)
+                .initial(GuardStateMachineStateType.SINITIAL)
+                .end(GuardStateMachineStateType.SEND)
                 .states(new HashSet<>(Arrays.asList(GuardStateMachineStateType.allIntermediates())))
 
                 // Actions can be attached to the states themselves:
@@ -55,7 +55,7 @@ public class GuardStateMachineConfig extends StateMachineConfigurerAdapter<Guard
             StateMachineTransitionConfigurer<GuardStateMachineStateType, String> transitions)
             throws Exception {
         transitions.withExternal()
-                .source(GuardStateMachineStateType.SSTART)
+                .source(GuardStateMachineStateType.SINITIAL)
                 .target(GuardStateMachineStateType.S0)
                 .event("0")
                 .action(initAction())
@@ -81,7 +81,7 @@ public class GuardStateMachineConfig extends StateMachineConfigurerAdapter<Guard
                 .and()
                 .withExternal()
                 .source(GuardStateMachineStateType.S3)
-                .target(GuardStateMachineStateType.SFINISH)
+                .target(GuardStateMachineStateType.SEND)
                 .event("finish");
     }
 

@@ -27,8 +27,8 @@ public class SimpleStateMachineConfig extends
             throws Exception {
         statesConfigurer
                 .withStates()
-                .initial(SimpleStateMachineStateType.SSTART)
-                .end(SimpleStateMachineStateType.SFINISH)
+                .initial(SimpleStateMachineStateType.SINITIAL)
+                .end(SimpleStateMachineStateType.SEND)
                 .states(new HashSet<>(Arrays.asList(SimpleStateMachineStateType.allIntermediates())));
     }
 
@@ -39,7 +39,7 @@ public class SimpleStateMachineConfig extends
             StateMachineTransitionConfigurer<SimpleStateMachineStateType, String> transitions)
             throws Exception {
         transitions.withExternal()
-                .source(SimpleStateMachineStateType.SSTART).target(SimpleStateMachineStateType.S0)
+                .source(SimpleStateMachineStateType.SINITIAL).target(SimpleStateMachineStateType.S0)
                 .event("0").and()
                 .withExternal()
                 .source(SimpleStateMachineStateType.S0).target(SimpleStateMachineStateType.S1).event("1")
@@ -51,7 +51,7 @@ public class SimpleStateMachineConfig extends
                 .source(SimpleStateMachineStateType.S2).target(SimpleStateMachineStateType.S3).event("3")
                 .and()
                 .withExternal()
-                .source(SimpleStateMachineStateType.S3).target(SimpleStateMachineStateType.SFINISH)
+                .source(SimpleStateMachineStateType.S3).target(SimpleStateMachineStateType.SEND)
                 .event("finish");
     }
 }

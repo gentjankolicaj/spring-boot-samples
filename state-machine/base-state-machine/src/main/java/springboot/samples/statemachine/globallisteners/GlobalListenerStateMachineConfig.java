@@ -31,8 +31,8 @@ public class GlobalListenerStateMachineConfig extends
             throws Exception {
         statesConfigurer
                 .withStates()
-                .initial(GlobalListenerStateMachineStateType.SSTART)
-                .end(GlobalListenerStateMachineStateType.SFINISH)
+                .initial(GlobalListenerStateMachineStateType.SINITIAL)
+                .end(GlobalListenerStateMachineStateType.SEND)
                 .states(
                         new HashSet<>(Arrays.asList(GlobalListenerStateMachineStateType.allIntermediates())))
 
@@ -55,7 +55,7 @@ public class GlobalListenerStateMachineConfig extends
             StateMachineTransitionConfigurer<GlobalListenerStateMachineStateType, String> transitions)
             throws Exception {
         transitions.withExternal()
-                .source(GlobalListenerStateMachineStateType.SSTART)
+                .source(GlobalListenerStateMachineStateType.SINITIAL)
                 .target(GlobalListenerStateMachineStateType.S0)
                 .event("0").action(initAction()).and()
                 .withExternal()
@@ -71,7 +71,7 @@ public class GlobalListenerStateMachineConfig extends
                         GlobalListenerStateMachineStateType.S3).event("3").and()
                 .withExternal()
                 .source(GlobalListenerStateMachineStateType.S3).target(
-                        GlobalListenerStateMachineStateType.SFINISH).event("finish");
+                        GlobalListenerStateMachineStateType.SEND).event("finish");
     }
 
     @Override

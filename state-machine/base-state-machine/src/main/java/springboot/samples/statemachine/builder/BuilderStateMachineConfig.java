@@ -30,8 +30,8 @@ public class BuilderStateMachineConfig {
         //configure states.
         builder.configureStates()
                 .withStates()
-                .initial(BuilderStateMachineStateType.SSTART)
-                .end(BuilderStateMachineStateType.SFINISH)
+                .initial(BuilderStateMachineStateType.SINITIAL)
+                .end(BuilderStateMachineStateType.SEND)
                 .states(new HashSet<>(Arrays.asList(BuilderStateMachineStateType.allIntermediates())))
 
                 // Actions can be attached to the states themselves:
@@ -48,7 +48,7 @@ public class BuilderStateMachineConfig {
         //configure transitions
         builder.configureTransitions()
                 .withExternal()
-                .source(BuilderStateMachineStateType.SSTART)
+                .source(BuilderStateMachineStateType.SINITIAL)
                 .target(BuilderStateMachineStateType.S0)
                 .event("0")
                 .action(initAction())
@@ -74,7 +74,7 @@ public class BuilderStateMachineConfig {
                 .and()
                 .withExternal()
                 .source(BuilderStateMachineStateType.S3)
-                .target(BuilderStateMachineStateType.SFINISH)
+                .target(BuilderStateMachineStateType.SEND)
                 .event("finish");
 
         // configure configs

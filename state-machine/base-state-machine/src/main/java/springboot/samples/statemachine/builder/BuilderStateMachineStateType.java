@@ -8,7 +8,7 @@ package springboot.samples.statemachine.builder;
  */
 public enum BuilderStateMachineStateType {
 
-    SSTART, S0, S1, S2, S3, SFINISH;
+    SINITIAL, S0, S1, S2, S3, SEND;
 
 
     public static BuilderStateMachineStateType[] allIntermediates() {
