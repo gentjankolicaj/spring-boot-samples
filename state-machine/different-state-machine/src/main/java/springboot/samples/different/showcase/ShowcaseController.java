@@ -5,23 +5,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springboot.samples.different.turnstile.TurnstileEvent;
-import springboot.samples.different.turnstile.TurnstileService;
 
 @RestController
 @RequestMapping("/statemachine/showcase")
 public class ShowcaseController {
 
-  private final TurnstileService turnstileService;
+  private final ShowcaseService showcaseService;
 
   @Autowired
-  public ShowcaseController(TurnstileService turnstileService) {
-    this.turnstileService = turnstileService;
+  public ShowcaseController(ShowcaseService showcaseService) {
+    this.showcaseService = showcaseService;
   }
 
   @PostMapping
-  public void event(@RequestBody TurnstileEvent turnstileEvent) {
-    turnstileService.event(turnstileEvent);
+  public void event(@RequestBody ShowcaseEvent showcaseEvent) {
+    showcaseService.event(showcaseEvent);
   }
 
 }

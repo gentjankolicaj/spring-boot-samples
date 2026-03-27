@@ -17,6 +17,7 @@ public class ShowcaseConfig {
     ssmBuilder.configureStates()
         .withStates()
         .initial(ShowcaseState.S0)
+        .state(ShowcaseState.S0)
         .and()
         .withStates()
         .parent(ShowcaseState.S0) // S0 level
@@ -31,13 +32,12 @@ public class ShowcaseConfig {
         .and()
         .withStates()
         .parent(ShowcaseState.S0) //S0 level
-        .initial(ShowcaseState.S2)
         .state(ShowcaseState.S2)
         .and()
         .withStates()
         .parent(ShowcaseState.S2) //S2 level
         .initial(ShowcaseState.S21)
-        .state(ShowcaseState.S1)
+        .state(ShowcaseState.S21)
         .and()
         .withStates()
         .parent(ShowcaseState.S21) // S21 level
@@ -46,7 +46,13 @@ public class ShowcaseConfig {
         .state(ShowcaseState.S212);
 
     //configure transitions
-    ssmBuilder.configureTransitions();
+    ssmBuilder.configureTransitions()
+        //First level transitions
+        .withExternal().source(ShowcaseState.S1).target(ShowcaseState.S0).event(ShowcaseEvent.D)
+        .and()
+        .withExternal().source(ShowcaseState.S1).target(ShowcaseState.S1).event(ShowcaseEvent.A)
+        .and()
+        .withExternal().source(ShowcaseState.S1).target(ShowcaseState.S2).event(ShowcaseEvent.C);
 
     //configure configurations
     ssmBuilder.configureConfiguration()
