@@ -14,7 +14,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>rest-01</module>
+        <module>web-1</module>
 	</modules>
 
 </project>
