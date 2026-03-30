@@ -12,7 +12,6 @@ import org.springframework.statemachine.annotation.OnTransition;
 @OnTransition
 public @interface StatesOnTransition {
 
-
   States[] source() default {};
 
   States[] target() default {};

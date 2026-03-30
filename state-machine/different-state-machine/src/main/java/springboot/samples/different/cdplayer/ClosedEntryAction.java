@@ -14,4 +14,5 @@ public class ClosedEntryAction implements Action<States, Events> {
       context.getStateMachine().sendEvent(Events.PLAY);
     }
   }
+
 }

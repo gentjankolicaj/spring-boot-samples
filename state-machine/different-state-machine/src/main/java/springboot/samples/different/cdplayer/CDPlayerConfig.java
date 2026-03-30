@@ -81,7 +81,6 @@ public class CDPlayerConfig {
     return builder.build();
   }
 
-
   @Bean
   public ClosedEntryAction closedEntryAction() {
     return new ClosedEntryAction();
@@ -111,6 +110,5 @@ public class CDPlayerConfig {
   public PlayGuard playGuard() {
     return new PlayGuard();
   }
-
 
 }

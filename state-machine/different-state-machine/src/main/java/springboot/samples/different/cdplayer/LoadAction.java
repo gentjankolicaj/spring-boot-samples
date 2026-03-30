@@ -10,4 +10,5 @@ public class LoadAction implements Action<States, Events> {
     Object cd = context.getMessageHeader(Variables.CD);
     context.getExtendedState().getVariables().put(Variables.CD, cd);
   }
+
 }

@@ -10,4 +10,5 @@ public class PlayAction implements Action<States, Events> {
     context.getExtendedState().getVariables().put(Variables.ELAPSEDTIME, 0L);
     context.getExtendedState().getVariables().put(Variables.TRACK, 0);
   }
+
 }

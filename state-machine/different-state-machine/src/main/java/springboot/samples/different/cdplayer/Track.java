@@ -7,5 +7,4 @@ public class Track {
   @Getter
   private int length;
 
-
 }
