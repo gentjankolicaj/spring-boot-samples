@@ -1,4 +1,4 @@
-package springboot.samples.different.cdplayer;
+package springboot.samples.different.tasks;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,21 +6,22 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.stereotype.Service;
 
+
 @Slf4j
 @Service
-public class CDPlayerService {
+public class TasksService {
 
-  private final StateMachine<States, Events> stateMachine;
+  private final StateMachine<TasksState, TasksEvent> stateMachine;
 
   @Autowired
-  public CDPlayerService(@Qualifier("CDPlayerMachine") StateMachine<States, Events> stateMachine) {
+  public TasksService(@Qualifier("tasksSSM") StateMachine<TasksState, TasksEvent> stateMachine) {
     this.stateMachine = stateMachine;
     this.stateMachine.start();
   }
 
-  public void sendEvent(Events events) {
-    stateMachine.sendEvent(events);
-    log.info("CDPlayer state: {}", stateMachine.getState());
+  public void event(TasksEvent event) {
+    stateMachine.sendEvent(event);
+    log.info("Tasks SSM state:{}", stateMachine.getState());
   }
 
 }
