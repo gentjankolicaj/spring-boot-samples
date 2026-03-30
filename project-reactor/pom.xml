@@ -22,7 +22,7 @@
     </properties>
 
     <modules>
-        <module>base-project-reactor</module>
+        <module>base-reactor</module>
     </modules>
 
     <dependencyManagement>

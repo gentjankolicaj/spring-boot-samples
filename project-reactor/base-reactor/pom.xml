@@ -8,8 +8,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>base-project-reactor</artifactId>
-    <name>base-project-reactor</name>
+    <artifactId>base-reactor</artifactId>
+    <name>base-reactor</name>
     <packaging>jar</packaging>
     <description>Application sample using Spring Boot + Project Reactor</description>
 
