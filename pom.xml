@@ -25,6 +25,7 @@
         <module>liquibase</module>
         <module>integration</module>
         <module>state-machine</module>
+        <module>project-reactor</module>
     </modules>
 
 
