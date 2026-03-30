@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/showcase")
 public class ShowcaseController {
 
-    private final ShowcaseService showcaseService;
+  private final ShowcaseService showcaseService;
 
-    @Autowired
-    public ShowcaseController(ShowcaseService showcaseService) {
-        this.showcaseService = showcaseService;
-    }
+  @Autowired
+  public ShowcaseController(ShowcaseService showcaseService) {
+    this.showcaseService = showcaseService;
+  }
 
-    @PostMapping
-    public void event(@RequestBody ShowcaseEvent showcaseEvent) {
-        showcaseService.event(showcaseEvent);
-    }
+  @PostMapping
+  public void event(@RequestBody ShowcaseEvent showcaseEvent) {
+    showcaseService.event(showcaseEvent);
+  }
 
 }

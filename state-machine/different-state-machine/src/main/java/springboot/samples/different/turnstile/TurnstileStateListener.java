@@ -7,15 +7,15 @@ import org.springframework.statemachine.state.State;
 
 @Slf4j
 public class TurnstileStateListener extends
-        StateMachineListenerAdapter<TurnstileState, TurnstileEvent> {
+    StateMachineListenerAdapter<TurnstileState, TurnstileEvent> {
 
 
-    @Override
-    public void stateChanged(State<TurnstileState, TurnstileEvent> from,
-                             State<TurnstileState, TurnstileEvent> to) {
-        TurnstileState fromState = from != null ? from.getId() : null;
-        TurnstileState toState = to != null ? to.getId() : null;
-        log.info("Turnstile SSM stateChanged : [from: {}, to:{}]", fromState, toState);
-    }
+  @Override
+  public void stateChanged(State<TurnstileState, TurnstileEvent> from,
+      State<TurnstileState, TurnstileEvent> to) {
+    TurnstileState fromState = from != null ? from.getId() : null;
+    TurnstileState toState = to != null ? to.getId() : null;
+    log.info("Turnstile SSM stateChanged : [from: {}, to:{}]", fromState, toState);
+  }
 
 }
