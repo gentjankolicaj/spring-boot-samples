@@ -1,4 +1,4 @@
-package springboot.samples.basereactor.counter;
+package springboot.samples.basewebflux.counter;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,4 +1,4 @@
-package springboot.samples.basereactor.pubsub;
+package springboot.samples.basewebflux.pubsub;
 
 import lombok.extern.slf4j.Slf4j;
 

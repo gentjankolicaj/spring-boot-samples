@@ -1,4 +1,4 @@
-package springboot.samples.basereactor.pubsub;
+package springboot.samples.basewebflux.pubsub;
 
 import java.util.LinkedList;
 import java.util.List;

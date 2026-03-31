@@ -1,9 +1,9 @@
 spring:
   application:
-    name: base-reactor
+    name: base-webflux
   # Database configuration
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/spring_project_reactor?allowPublicKeyRetrieval=true&useSSL=false}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/spring_webflux?allowPublicKeyRetrieval=true&useSSL=false}
     username: ${SPRING_DATASOURCE_USERNAME:springuser}
     password: ${SPRING_DATASOURCE_PASSWORD:springpassword}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -20,10 +20,9 @@ spring:
 # Logging levels for debugging the Integration Flow
 logging:
   level:
-    org.springframework.integration: INFO
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    springboot.samples.integration: DEBUG
+    springboot.samples.basewebflux: DEBUG
 
 # Springdoc configuration
 springdoc:

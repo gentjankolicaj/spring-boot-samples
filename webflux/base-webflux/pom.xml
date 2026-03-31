@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>springboot.samples</groupId>
-        <artifactId>project-reactor</artifactId>
+        <artifactId>webflux</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>base-reactor</artifactId>
-    <name>base-reactor</name>
+    <artifactId>base-webflux</artifactId>
+    <name>base-webflux</name>
     <packaging>jar</packaging>
-    <description>Application sample using Spring Boot + Project Reactor</description>
+    <description>Application sample using Spring Boot + Web Flux</description>
 
     <dependencies>
         <dependency>
