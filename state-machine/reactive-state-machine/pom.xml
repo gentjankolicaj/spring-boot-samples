@@ -2,45 +2,27 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
+   <parent>
         <groupId>springboot.samples</groupId>
         <artifactId>state-machine</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tenis-state-machine</artifactId>
-    <name>tenis-state-machine</name>
-    <description>Demo project with Spring Boot + Tenis State Machine + REST</description>
+    <artifactId>reactive-state-machine</artifactId>
+    <name>reactive-state-machine</name>
+    <description>Demo project with Spring Boot + State Machine + WebFlux</description>
 
     <properties>
         <spring-statemachine.version>3.2.1</spring-statemachine.version>
     </properties>
 
     <dependencies>
-        <!-- web dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
         <!-- state machine dependencies -->
         <dependency>
             <groupId>org.springframework.statemachine</groupId>
             <artifactId>spring-statemachine-starter</artifactId>
             <version>${spring-statemachine.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sourceforge.plantuml</groupId>
-            <artifactId>plantuml-mit</artifactId>
-            <version>1.2026.2</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- springdoc & swagger dependencies -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.3.0</version>
         </dependency>
 
         <!-- testing dependencies -->

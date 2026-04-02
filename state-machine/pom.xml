@@ -25,6 +25,7 @@
         <module>base-state-machine</module>
         <module>tenis-state-machine</module>
         <module>different-state-machine</module>
+        <module>reactive-state-machine</module>
     </modules>
 
     <dependencyManagement>
