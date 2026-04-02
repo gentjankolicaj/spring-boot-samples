@@ -4,7 +4,7 @@ public enum TasksState {
 
   READY,
   FORK,
-  TASKS, T1, T2, T3,
+  TASKS, T1, T1E, T2, T2E, T3, T3E,
   CHOICE,
   JOIN,
   ERROR,
