@@ -3,10 +3,10 @@ version: '3.8'
 services:
   mysql-db:
     image: mysql:8.0.31
-    container_name: spring-project-reactor-mysql
+    container_name: spring-webflux-mysql
     restart: always
     environment:
-      MYSQL_DATABASE: spring_project_reactor
+      MYSQL_DATABASE: spring_webflux
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: springuser
       MYSQL_PASSWORD: springpassword

@@ -8,10 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>project-reactor</artifactId>
+    <artifactId>webflux</artifactId>
     <packaging>pom</packaging>
-    <name>project-reactor</name>
-    <description>Demo samples with Spring Boot + Project Reactor</description>
+    <name>webflux</name>
+    <description>Demo samples with Spring Boot + Web Flux</description>
 
     <properties>
         <java.version>17</java.version>
@@ -22,7 +22,7 @@
     </properties>
 
     <modules>
-        <module>base-reactor</module>
+        <module>base-webflux</module>
     </modules>
 
     <dependencyManagement>

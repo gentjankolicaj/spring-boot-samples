@@ -4,19 +4,26 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>springboot.samples</groupId>
-        <artifactId>project-reactor</artifactId>
+        <artifactId>webflux</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>base-reactor</artifactId>
-    <name>base-reactor</name>
+    <artifactId>base-webflux</artifactId>
+    <name>base-webflux</name>
     <packaging>jar</packaging>
-    <description>Application sample using Spring Boot + Project Reactor</description>
+    <description>Application sample using Spring Boot + Web Flux</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <!-- springdoc & swagger dependencies -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+            <version>2.8.16</version>
         </dependency>
     </dependencies>
 
