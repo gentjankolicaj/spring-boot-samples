@@ -1,4 +1,4 @@
-package springboot.samples.basewebflux.reactivestream;
+package springboot.samples.basewebflux.reactive;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -16,18 +17,23 @@ import java.time.Duration;
  */
 @Slf4j
 @RestController
-@RequestMapping("/reactive/streams")
-public class ReactiveStreamsController {
+@RequestMapping("/reactive/flux")
+public class FluxController {
 
     static Flux<Integer> getIntFlux() {
         return Flux.range(0, 20)
                 .delayElements(Duration.ofSeconds(3));
     }
 
-    @GetMapping("/int-flux")
+    @GetMapping("/datetimes")
+    public Flux<LocalDateTime> localDateTimeFlux() {
+        return Flux.just(LocalDateTime.MIN, LocalDateTime.now(), LocalDateTime.MAX);
+    }
+
+    @GetMapping("/int")
     public Flux<Integer> integerFlux() {
         Flux<Integer> flux = getIntFlux();
-        flux.subscribe(e -> log.info("int-flux element: {}", e));
+        flux.subscribe(e -> log.info("flux/int element: {}", e));
         return flux;
     }
 
