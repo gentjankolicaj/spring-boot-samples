@@ -1,4 +1,4 @@
-package springboot.samples.basewebflux.calculator;
+package springboot.samples.webfluxbase.calculator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

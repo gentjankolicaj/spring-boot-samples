@@ -22,7 +22,7 @@
     </properties>
 
     <modules>
-        <module>base-webflux</module>
+        <module>webflux-base</module>
         <module>webflux-mongodb</module>
     </modules>
 

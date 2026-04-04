@@ -1,4 +1,4 @@
-package springboot.samples.basewebflux.reactive;
+package springboot.samples.webfluxbase.reactive;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

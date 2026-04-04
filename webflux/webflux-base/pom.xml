@@ -8,8 +8,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>base-webflux</artifactId>
-    <name>base-webflux</name>
+    <artifactId>webflux-base</artifactId>
+    <name>webflux-base</name>
     <packaging>jar</packaging>
     <description>Application sample using Spring Boot + Web Flux</description>
 
