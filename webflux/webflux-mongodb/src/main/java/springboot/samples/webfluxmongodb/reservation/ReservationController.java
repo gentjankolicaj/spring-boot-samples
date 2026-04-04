@@ -1,4 +1,4 @@
-package springboot.samples.webfluxmongodb;
+package springboot.samples.webfluxmongodb.reservation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

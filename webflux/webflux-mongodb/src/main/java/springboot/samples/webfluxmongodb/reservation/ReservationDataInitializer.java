@@ -1,0 +1,36 @@
+package springboot.samples.webfluxmongodb.reservation;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
+
+import java.util.UUID;
+
+@Slf4j
+@Component
+@RequiredArgsConstructor
+public class ReservationDataInitializer {
+
+    private final ReservationRepository repository;
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void initialize() {
+        Flux<String> strings = Flux.just("Hello", "World", "This is webflux-mongodb", "Jane", "Doe", "John", "Doe");
+        Flux<Reservation> reservations = strings.map(e -> new Reservation(null, e, UUID.randomUUID().toString()));
+
+        //To save in mongo in future
+        Flux<Reservation> savedFlux = reservations.flatMap(repository::save); //till this moment there is no data on db.
+
+        repository.deleteAll() //in future delete all data
+                .log()
+                .thenMany(savedFlux) // in future save flux of data
+                .log()
+                .thenMany(repository.findAll()) //in future read all
+                .subscribe(e -> log.info("MongoDB reservation element :{}", e));
+
+    }
+
+}

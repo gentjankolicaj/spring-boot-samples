@@ -1,4 +1,4 @@
-package springboot.samples.webfluxmongodb;
+package springboot.samples.webfluxmongodb.reservation;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
