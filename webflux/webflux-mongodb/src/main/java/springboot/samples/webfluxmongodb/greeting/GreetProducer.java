@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  *
  */
 @Component
-public class GreetingProducer {
+public class GreetProducer {
 
     Flux<Greet> greetFlux(Duration delay) {
         return Flux.fromStream(Stream.generate(() -> new Greet(UUID.randomUUID().toString(), "Hello ")))

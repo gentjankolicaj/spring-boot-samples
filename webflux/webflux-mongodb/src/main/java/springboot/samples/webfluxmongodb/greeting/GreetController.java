@@ -16,17 +16,17 @@ import java.time.Duration;
  */
 @RestController("/greet")
 @RequiredArgsConstructor
-public class GreetingController {
+public class GreetController {
 
-    private final GreetingProducer greetingProducer;
+    private final GreetProducer greetProducer;
 
-    @GetMapping(value = "/flux-delay-2s", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/sse-2s", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Greet> fluxDelay2s() {
-        return greetingProducer.greetFlux(Duration.ofSeconds(2));
+        return greetProducer.greetFlux(Duration.ofSeconds(2));
     }
 
-    @GetMapping(value = "/flux-delay-1s", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/sse-1s", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Greet> fluxDelay1S() {
-        return greetingProducer.greetFlux(Duration.ofSeconds(1));
+        return greetProducer.greetFlux(Duration.ofSeconds(1));
     }
 }
