@@ -2,7 +2,19 @@ spring:
   application:
     name: webflux-mongodb
   # Database configuration
+  data:
+    mongodb:
+      # Add ?authSource=admin to the end of your URI
+      uri: mongodb://username:password@localhost:27017/webflux_mongodb?authSource=admin
 
+# Advanced Connection Pool Settings (Optional)
+# These help manage how the reactive driver handles the stream of connections
+mongodb:
+  reactive:
+    connection-pool:
+      max-size: 100
+      min-size: 10
+      max-wait-time: 120000 # in ms
 
 # Logging levels for debugging the Integration Flow
 logging:

@@ -18,6 +18,20 @@ services:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 5s
       retries: 10
+  mongo-db:
+    image: mongo:latest
+    container_name: spring-webflux-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      # These match the credentials in your application.yml
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: webflux_mongodb
+    volumes:
+      - mongo_data:/data/db
+    restart: always
 
 volumes:
   mysql_data:
+  mongo_data:
