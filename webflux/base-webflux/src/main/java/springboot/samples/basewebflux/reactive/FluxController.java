@@ -31,7 +31,7 @@ public class FluxController {
     }
 
     @GetMapping("/int")
-    public Flux<Integer> integerFlux() {
+    public Flux<Integer> intFlux() {
         Flux<Integer> flux = getIntFlux();
         flux.subscribe(e -> log.info("flux/int element: {}", e));
         return flux;

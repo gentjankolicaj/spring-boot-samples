@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: webflux-mongodb
+  # Database configuration
+
+
+# Logging levels for debugging the Integration Flow
+logging:
+  level:
+    springboot.samples.webfluxmongodb: DEBUG
+
+# Springdoc configuration
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+  show-actuator: true
