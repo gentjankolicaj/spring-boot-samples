@@ -29,7 +29,7 @@ public class PersistenceConfig {
 
     @Bean
     public StateMachinePersister<PersistState, PersistEvent, String> persister() {
-        return new DefaultStateMachinePersister<>(new StateMachinePersist<PersistState, PersistEvent, String>() {
+        return new DefaultStateMachinePersister<>(new StateMachinePersist<>() {
 
             private final Map<String, StateMachineContext<PersistState, PersistEvent>> storage = new HashMap<>();
 

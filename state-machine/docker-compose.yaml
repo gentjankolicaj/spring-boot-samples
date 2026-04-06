@@ -37,6 +37,20 @@ services:
     ports:
       - "19092:19092"
       - "19093:19093"
+  zookeeper:
+    image: zookeeper:latest
+    container_name: zookeeper
+    restart: always
+    ports:
+      - "2181:2181"
+    environment:
+      ZOO_TICK_TIME: 2000
+    volumes:
+      - zookeeper_data:/data
+      - zookeeper_data:/datalog
+
+
 
 volumes:
   mysql_data:
+  zookeeper_data:
