@@ -28,10 +28,11 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(auth -> auth
         .requestMatchers(WHITELIST).permitAll()                          // These are unsecured
-        .anyRequest().authenticated()                                   // Everything else is secured
+        .anyRequest()
+        .authenticated()                                   // Everything else is secured
     );
 
-  http .formLogin(Customizer.withDefaults()); // Enables the default /login page
+    http.formLogin(Customizer.withDefaults()); // Enables the default /login page
     return http.build();
   }
 

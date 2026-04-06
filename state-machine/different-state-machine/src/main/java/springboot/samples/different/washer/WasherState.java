@@ -8,6 +8,6 @@ package springboot.samples.different.washer;
  */
 public enum WasherState {
 
-    INIT, END, RUNNING, WASHING, RINSING, DRYING, HISTORY,
-    POWER_OFF
+  INIT, END, RUNNING, WASHING, RINSING, DRYING, HISTORY,
+  POWER_OFF
 }

@@ -8,6 +8,6 @@ package springboot.samples.different.persist;
  */
 public enum PersistEvent {
 
-    PROCESS, SEND, DELIVER
+  PROCESS, SEND, DELIVER
 
 }

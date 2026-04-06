@@ -8,5 +8,5 @@ package springboot.samples.different.zookeper;
  */
 public enum ZookeeperSSMEvent {
 
-    COIN, PUSH
+  COIN, PUSH
 }

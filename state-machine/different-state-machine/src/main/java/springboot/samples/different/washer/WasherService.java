@@ -11,17 +11,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class WasherService {
 
-    private final StateMachine<WasherState, WasherEvent> stateMachine;
+  private final StateMachine<WasherState, WasherEvent> stateMachine;
 
-    @Autowired
-    public WasherService(@Qualifier("washerSSM") StateMachine<WasherState, WasherEvent> stateMachine) {
-        this.stateMachine = stateMachine;
-        this.stateMachine.start();
-    }
+  @Autowired
+  public WasherService(
+      @Qualifier("washerSSM") StateMachine<WasherState, WasherEvent> stateMachine) {
+    this.stateMachine = stateMachine;
+    this.stateMachine.start();
+  }
 
-    public void event(WasherEvent event) {
-        stateMachine.sendEvent(event);
-        log.info("Washer SSM state:{}", stateMachine.getState());
-    }
+  public void event(WasherEvent event) {
+    stateMachine.sendEvent(event);
+    log.info("Washer SSM state:{}", stateMachine.getState());
+  }
 
 }
