@@ -8,5 +8,5 @@ package springboot.samples.different.persist;
  */
 public enum PersistState {
 
-  INIT, PLACED, PROCESSING, DELIVERED, SENT
+    INIT, PLACED, PROCESSING, DELIVERED, SENT
 }

@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class TasksService {
 
-  private final StateMachine<TasksState, TasksEvent> stateMachine;
+    private final StateMachine<TasksState, TasksEvent> stateMachine;
 
-  @Autowired
-  public TasksService(@Qualifier("tasksSSM") StateMachine<TasksState, TasksEvent> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-  }
+    @Autowired
+    public TasksService(@Qualifier("tasksSSM") StateMachine<TasksState, TasksEvent> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void event(TasksEvent event) {
-    stateMachine.sendEvent(event);
-    log.info("Tasks SSM state:{}", stateMachine.getState());
-  }
+    public void event(TasksEvent event) {
+        stateMachine.sendEvent(event);
+        log.info("Tasks SSM state:{}", stateMachine.getState());
+    }
 
 }

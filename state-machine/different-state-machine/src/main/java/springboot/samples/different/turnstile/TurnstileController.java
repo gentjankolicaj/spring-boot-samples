@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/turnstile")
 public class TurnstileController {
 
-  private final TurnstileService turnstileService;
+    private final TurnstileService turnstileService;
 
-  @Autowired
-  public TurnstileController(TurnstileService turnstileService) {
-    this.turnstileService = turnstileService;
-  }
+    @Autowired
+    public TurnstileController(TurnstileService turnstileService) {
+        this.turnstileService = turnstileService;
+    }
 
-  @PostMapping
-  public void event(@RequestBody TurnstileEvent turnstileEvent) {
-    turnstileService.event(turnstileEvent);
-  }
+    @PostMapping
+    public void event(@RequestBody TurnstileEvent turnstileEvent) {
+        turnstileService.event(turnstileEvent);
+    }
 
 }

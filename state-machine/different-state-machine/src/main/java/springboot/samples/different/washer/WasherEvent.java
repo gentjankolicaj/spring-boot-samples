@@ -8,6 +8,6 @@ package springboot.samples.different.washer;
  */
 public enum WasherEvent {
 
-  INIT, END,
-  RINSE, DRY, STOP, CUT_POWER, RESTORE_POWER
+    INIT, END,
+    RINSE, DRY, STOP, CUT_POWER, RESTORE_POWER
 }

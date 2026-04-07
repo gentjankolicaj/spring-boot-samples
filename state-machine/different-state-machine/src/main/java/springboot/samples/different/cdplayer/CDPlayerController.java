@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/cdplayer")
 public class CDPlayerController {
 
-  private final CDPlayerService cdPlayerService;
+    private final CDPlayerService cdPlayerService;
 
-  @Autowired
-  public CDPlayerController(CDPlayerService cdPlayerService) {
-    this.cdPlayerService = cdPlayerService;
-  }
+    @Autowired
+    public CDPlayerController(CDPlayerService cdPlayerService) {
+        this.cdPlayerService = cdPlayerService;
+    }
 
-  @PostMapping
-  public void sendEvent(@RequestBody Events events) {
-    cdPlayerService.sendEvent(events);
-  }
+    @PostMapping
+    public void sendEvent(@RequestBody Events events) {
+        cdPlayerService.sendEvent(events);
+    }
 
 }

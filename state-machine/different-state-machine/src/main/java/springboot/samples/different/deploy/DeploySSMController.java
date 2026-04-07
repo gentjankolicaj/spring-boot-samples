@@ -1,4 +1,4 @@
-package springboot.samples.different.eventservice;
+package springboot.samples.different.deploy;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/statemachine/deploy")
 @RequiredArgsConstructor
-public class EventSSMController {
+public class DeploySSMController {
 
-    private final EventSSMService eventSSMService;
+    private final DeploySSMService deploySSMService;
 
 
     @PostMapping
-    public void event(EventSSMEvent eventSSMEvent) {
-        this.eventSSMService.event(eventSSMEvent);
+    public void event(DeploySSMEvent deploySSMEvent) {
+        this.deploySSMService.event(deploySSMEvent);
     }
 
 

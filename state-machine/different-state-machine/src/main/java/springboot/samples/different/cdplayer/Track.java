@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public class Track {
 
-  @Getter
-  private int length;
+    @Getter
+    private int length;
 
 }

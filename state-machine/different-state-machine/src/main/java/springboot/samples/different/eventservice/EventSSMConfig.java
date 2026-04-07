@@ -17,80 +17,80 @@ import java.util.Map;
 @Configuration
 public class EventSSMConfig {
 
-  public static final String TOTAL_ITEMS_KEY = "totalItems";
-  public static final String ITEMS_KEY = "items";
+    public static final String TOTAL_ITEMS_KEY = "totalItems";
+    public static final String ITEMS_KEY = "items";
 
-  @Bean("eventSSM")
-  public StateMachine<EventSSMState, EventSSMEvent> createStateMachine() throws Exception {
-    StateMachineBuilder.Builder<EventSSMState, EventSSMEvent> builder = new Builder<>();
+    @Bean("eventSSM")
+    public StateMachine<EventSSMState, EventSSMEvent> createStateMachine() throws Exception {
+        StateMachineBuilder.Builder<EventSSMState, EventSSMEvent> builder = new Builder<>();
 
-    //configure states
-    builder.configureStates()
-        .withStates()
-        .initial(EventSSMState.LANDING)
-        .states(new HashSet<>(EnumSet.allOf(EventSSMState.class)));
+        //configure states
+        builder.configureStates()
+                .withStates()
+                .initial(EventSSMState.LANDING)
+                .states(new HashSet<>(EnumSet.allOf(EventSSMState.class)));
 
-    //configure transitions
-    builder.configureTransitions()
-        .withExternal().source(EventSSMState.LANDING).target(EventSSMState.ITEMS)
-        .event(EventSSMEvent.VIEW_I)
-        .and()
-            .withInternal().source(EventSSMState.ITEMS).event(EventSSMEvent.ADD).action(addAction())
-        .and()
-        .withExternal().source(EventSSMState.ITEMS).target(EventSSMState.CART)
-        .event(EventSSMEvent.VIEW_C)
-        .and()
-            .withInternal().source(EventSSMState.CART).event(EventSSMEvent.DEL).action(delAction())
-        .and()
-        .withExternal().source(EventSSMState.CART).target(EventSSMState.PAYMENT)
-        .event(EventSSMEvent.VIEW_P)
-        .and()
-        .withExternal().source(EventSSMState.PAYMENT).target(EventSSMState.CART)
-        .event(EventSSMEvent.VIEW_C)
-        .and()
-        .withExternal().source(EventSSMState.CART).target(EventSSMState.LANDING)
-        .event(EventSSMEvent.RESET)
-        .and()
-        .withExternal().source(EventSSMState.PAYMENT).target(EventSSMState.ITEMS)
-        .event(EventSSMEvent.VIEW_I)
-        .and()
-        .withExternal().source(EventSSMState.PAYMENT).target(EventSSMState.LANDING)
-        .event(EventSSMEvent.RESET);
+        //configure transitions
+        builder.configureTransitions()
+                .withExternal().source(EventSSMState.LANDING).target(EventSSMState.ITEMS)
+                .event(EventSSMEvent.VIEW_I)
+                .and()
+                .withInternal().source(EventSSMState.ITEMS).event(EventSSMEvent.ADD).action(addAction())
+                .and()
+                .withExternal().source(EventSSMState.ITEMS).target(EventSSMState.CART)
+                .event(EventSSMEvent.VIEW_C)
+                .and()
+                .withInternal().source(EventSSMState.CART).event(EventSSMEvent.DEL).action(delAction())
+                .and()
+                .withExternal().source(EventSSMState.CART).target(EventSSMState.PAYMENT)
+                .event(EventSSMEvent.VIEW_P)
+                .and()
+                .withExternal().source(EventSSMState.PAYMENT).target(EventSSMState.CART)
+                .event(EventSSMEvent.VIEW_C)
+                .and()
+                .withExternal().source(EventSSMState.CART).target(EventSSMState.LANDING)
+                .event(EventSSMEvent.RESET)
+                .and()
+                .withExternal().source(EventSSMState.PAYMENT).target(EventSSMState.ITEMS)
+                .event(EventSSMEvent.VIEW_I)
+                .and()
+                .withExternal().source(EventSSMState.PAYMENT).target(EventSSMState.LANDING)
+                .event(EventSSMEvent.RESET);
 
-    //configure configuration
-    builder.configureConfiguration()
-        .withConfiguration()
-        .autoStartup(true);
+        //configure configuration
+        builder.configureConfiguration()
+                .withConfiguration()
+                .autoStartup(true);
 
-    return builder.build();
-  }
+        return builder.build();
+    }
 
-  Action<EventSSMState, EventSSMEvent> addAction() {
-    return stateContext -> {
-      Map<Object, Object> vars = stateContext.getExtendedState().getVariables();
+    Action<EventSSMState, EventSSMEvent> addAction() {
+        return stateContext -> {
+            Map<Object, Object> vars = stateContext.getExtendedState().getVariables();
 
-      //increment item
-      Integer totalItems = stateContext.getExtendedState().get(TOTAL_ITEMS_KEY, Integer.class);
-      totalItems = (Integer) (totalItems == null ? vars.put(TOTAL_ITEMS_KEY, 1) : vars.put(TOTAL_ITEMS_KEY, totalItems + 1));
-      log.info("addAction(): Variable 'totalItems' value {}", totalItems);
+            //increment item
+            Integer totalItems = stateContext.getExtendedState().get(TOTAL_ITEMS_KEY, Integer.class);
+            totalItems = (Integer) (totalItems == null ? vars.put(TOTAL_ITEMS_KEY, 1) : vars.put(TOTAL_ITEMS_KEY, totalItems + 1));
+            log.info("addAction(): Variable 'totalItems' value {}", totalItems);
 
-      //more below
+            //more below
 
-    };
-  }
+        };
+    }
 
-  Action<EventSSMState, EventSSMEvent> delAction() {
-    return stateContext -> {
-      Map<Object, Object> vars = stateContext.getExtendedState().getVariables();
+    Action<EventSSMState, EventSSMEvent> delAction() {
+        return stateContext -> {
+            Map<Object, Object> vars = stateContext.getExtendedState().getVariables();
 
-      //decrement item
-      Integer totalItems = stateContext.getExtendedState().get(TOTAL_ITEMS_KEY, Integer.class);
-      totalItems = (Integer) (totalItems == null ? vars.put(TOTAL_ITEMS_KEY, 0) : vars.put(TOTAL_ITEMS_KEY, totalItems - 1));
+            //decrement item
+            Integer totalItems = stateContext.getExtendedState().get(TOTAL_ITEMS_KEY, Integer.class);
+            totalItems = (Integer) (totalItems == null ? vars.put(TOTAL_ITEMS_KEY, 0) : vars.put(TOTAL_ITEMS_KEY, totalItems - 1));
 
-      log.info("delAction(): Variable 'totalItems' value {}", totalItems);
+            log.info("delAction(): Variable 'totalItems' value {}", totalItems);
 
-      //more below
-    };
-  }
+            //more below
+        };
+    }
 
 }

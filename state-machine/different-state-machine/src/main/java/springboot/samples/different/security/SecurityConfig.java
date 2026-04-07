@@ -12,44 +12,44 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-  private static final String[] WHITELIST = {
-      "/statemachine/cdplayer",
-      "/statemachine/persist",
-      "/statemachine/scope",
-      "/statemachine/showcase",
-      "/statemachine/tasks",
-      "/statemachine/turnstile",
-      "/statemachine/washer",
-          "/statemachine/zookeeper",
-          //note: did not add /statemachine/security because it is secured.
-          "/statemachine/eventservice"
-  };
+    private static final String[] WHITELIST = {
+            "/statemachine/cdplayer",
+            "/statemachine/persist",
+            "/statemachine/scope",
+            "/statemachine/showcase",
+            "/statemachine/tasks",
+            "/statemachine/turnstile",
+            "/statemachine/washer",
+            "/statemachine/zookeeper",
+            //note: did not add /statemachine/security because it is secured.
+            "/statemachine/eventservice"
+    };
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests(auth -> auth
-        .requestMatchers(WHITELIST).permitAll()                          // These are unsecured
-        .anyRequest()
-        .authenticated()                                   // Everything else is secured
-    );
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers(WHITELIST).permitAll()                          // These are unsecured
+                .anyRequest()
+                .authenticated()                                   // Everything else is secured
+        );
 
-    http.formLogin(Customizer.withDefaults()); // Enables the default /login page
-    return http.build();
-  }
+        http.formLogin(Customizer.withDefaults()); // Enables the default /login page
+        return http.build();
+    }
 
-  @Bean
-  public InMemoryUserDetailsManager userDetailsService() {
-    UserDetails user = User.withDefaultPasswordEncoder()
-        .username("user")
-        .password("password")
-        .roles("USER")
-        .build();
-    UserDetails admin = User.withDefaultPasswordEncoder()
-        .username("admin")
-        .password("password")
-        .roles("USER", "ADMIN")
-        .build();
-    return new InMemoryUserDetailsManager(user, admin);
-  }
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("password")
+                .roles("USER")
+                .build();
+        UserDetails admin = User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("password")
+                .roles("USER", "ADMIN")
+                .build();
+        return new InMemoryUserDetailsManager(user, admin);
+    }
 
 }

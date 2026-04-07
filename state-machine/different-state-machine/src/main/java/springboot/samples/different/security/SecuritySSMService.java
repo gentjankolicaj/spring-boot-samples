@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecuritySSMService {
 
-  private final StateMachine<SecuritySSMState, SecuritySSMEvent> stateMachine;
+    private final StateMachine<SecuritySSMState, SecuritySSMEvent> stateMachine;
 
-  public SecuritySSMService(
-      @Qualifier("securitySSM") StateMachine<SecuritySSMState, SecuritySSMEvent> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-    log.info("Started SSM '{}'", stateMachine);
-  }
+    public SecuritySSMService(
+            @Qualifier("securitySSM") StateMachine<SecuritySSMState, SecuritySSMEvent> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+        log.info("Started SSM '{}'", stateMachine);
+    }
 
 
-  public void event(SecuritySSMEvent event) {
-    this.stateMachine.sendEvent(event);
-    log.info("Security SSM '{}' state '{}'", stateMachine, event);
-  }
+    public void event(SecuritySSMEvent event) {
+        this.stateMachine.sendEvent(event);
+        log.info("Security SSM '{}' state '{}'", stateMachine, event);
+    }
 
 }

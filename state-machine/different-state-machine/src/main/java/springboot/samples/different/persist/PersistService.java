@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersistService {
 
-  private final StateMachine<PersistState, PersistEvent> stateMachine;
+    private final StateMachine<PersistState, PersistEvent> stateMachine;
 
-  @Autowired
-  public PersistService(
-      @Qualifier("persistSSM") StateMachine<PersistState, PersistEvent> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-  }
+    @Autowired
+    public PersistService(
+            @Qualifier("persistSSM") StateMachine<PersistState, PersistEvent> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void event(PersistEvent persistEvent) {
-    stateMachine.sendEvent(persistEvent);
-    log.info("Persist SSM state:{}", stateMachine.getState());
-  }
+    public void event(PersistEvent persistEvent) {
+        stateMachine.sendEvent(persistEvent);
+        log.info("Persist SSM state:{}", stateMachine.getState());
+    }
 
 }

@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/washer")
 public class WasherController {
 
-  private final WasherService washerService;
+    private final WasherService washerService;
 
-  @Autowired
-  public WasherController(WasherService washerService) {
-    this.washerService = washerService;
-  }
+    @Autowired
+    public WasherController(WasherService washerService) {
+        this.washerService = washerService;
+    }
 
-  @PostMapping
-  public void event(@RequestBody WasherEvent washerEvent) {
-    washerService.event(washerEvent);
-  }
+    @PostMapping
+    public void event(@RequestBody WasherEvent washerEvent) {
+        washerService.event(washerEvent);
+    }
 
 }

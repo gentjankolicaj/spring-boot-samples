@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/persist")
 public class PersistController {
 
-  private final PersistService persistService;
+    private final PersistService persistService;
 
-  @Autowired
-  public PersistController(PersistService persistService) {
-    this.persistService = persistService;
-  }
+    @Autowired
+    public PersistController(PersistService persistService) {
+        this.persistService = persistService;
+    }
 
-  @PostMapping
-  public void event(@RequestBody PersistEvent persistEvent) {
-    persistService.event(persistEvent);
-  }
+    @PostMapping
+    public void event(@RequestBody PersistEvent persistEvent) {
+        persistService.event(persistEvent);
+    }
 
 }

@@ -12,21 +12,21 @@ import org.springframework.stereotype.Service;
 public class ZookeeperSSMService {
 
 
-  private final StateMachine<ZookeeperSSMState, ZookeeperSSMEvent> stateMachine;
+    private final StateMachine<ZookeeperSSMState, ZookeeperSSMEvent> stateMachine;
 
 
-  @Autowired
-  public ZookeeperSSMService(
-      @Qualifier("zookeeperSSM") StateMachine<ZookeeperSSMState, ZookeeperSSMEvent> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-    log.info("zookeeperSSM started...");
-    log.info("zookeeperSSM start state: {}", stateMachine.getState());
-  }
+    @Autowired
+    public ZookeeperSSMService(
+            @Qualifier("zookeeperSSM") StateMachine<ZookeeperSSMState, ZookeeperSSMEvent> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+        log.info("zookeeperSSM started...");
+        log.info("zookeeperSSM start state: {}", stateMachine.getState());
+    }
 
-  public void event(ZookeeperSSMEvent event) {
-    stateMachine.sendEvent(event);
-    log.info("Zookeeper SSM state:{}", stateMachine.getState());
-  }
+    public void event(ZookeeperSSMEvent event) {
+        stateMachine.sendEvent(event);
+        log.info("Zookeeper SSM state:{}", stateMachine.getState());
+    }
 
 }

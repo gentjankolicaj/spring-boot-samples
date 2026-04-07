@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class CDPlayerService {
 
-  private final StateMachine<States, Events> stateMachine;
+    private final StateMachine<States, Events> stateMachine;
 
-  @Autowired
-  public CDPlayerService(@Qualifier("CDPlayerMachine") StateMachine<States, Events> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-  }
+    @Autowired
+    public CDPlayerService(@Qualifier("CDPlayerMachine") StateMachine<States, Events> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void sendEvent(Events events) {
-    stateMachine.sendEvent(events);
-    log.info("CDPlayer state: {}", stateMachine.getState());
-  }
+    public void sendEvent(Events events) {
+        stateMachine.sendEvent(events);
+        log.info("CDPlayer state: {}", stateMachine.getState());
+    }
 
 }

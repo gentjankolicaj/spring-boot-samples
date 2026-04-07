@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/tasks")
 public class TasksController {
 
-  private final TasksService tasksService;
+    private final TasksService tasksService;
 
-  @Autowired
-  public TasksController(TasksService tasksService) {
-    this.tasksService = tasksService;
-  }
+    @Autowired
+    public TasksController(TasksService tasksService) {
+        this.tasksService = tasksService;
+    }
 
-  @PostMapping
-  public void event(@RequestBody TasksEvent turnstileEvent) {
-    tasksService.event(turnstileEvent);
-  }
+    @PostMapping
+    public void event(@RequestBody TasksEvent turnstileEvent) {
+        tasksService.event(turnstileEvent);
+    }
 
 }

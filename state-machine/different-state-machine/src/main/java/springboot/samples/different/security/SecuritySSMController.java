@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/security")
 public class SecuritySSMController {
 
-  private final SecuritySSMService securitySSMService;
+    private final SecuritySSMService securitySSMService;
 
-  @Autowired
-  public SecuritySSMController(SecuritySSMService securitySSMService) {
-    this.securitySSMService = securitySSMService;
-  }
+    @Autowired
+    public SecuritySSMController(SecuritySSMService securitySSMService) {
+        this.securitySSMService = securitySSMService;
+    }
 
-  @PostMapping
-  public void event(@RequestBody SecuritySSMEvent event) {
-    this.securitySSMService.event(event);
-  }
+    @PostMapping
+    public void event(@RequestBody SecuritySSMEvent event) {
+        this.securitySSMService.event(event);
+    }
 
 }

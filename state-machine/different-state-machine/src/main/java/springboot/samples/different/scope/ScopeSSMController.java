@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("statemachine/scope")
 public class ScopeSSMController {
 
-  private final ScopeSSMService scopeSSMService;
+    private final ScopeSSMService scopeSSMService;
 
-  public ScopeSSMController(ScopeSSMService scopeSSMService) {
-    this.scopeSSMService = scopeSSMService;
-  }
+    public ScopeSSMController(ScopeSSMService scopeSSMService) {
+        this.scopeSSMService = scopeSSMService;
+    }
 
-  @PostMapping
-  public void event(HttpSession httpSession, @RequestBody ScopeSSMEvent event) throws Exception {
-    StateMachine<ScopeSSMState, ScopeSSMEvent> sessionSSM = scopeSSMService.getStateMachine(
-        httpSession.getId());
-    sessionSSM.sendEvent(event);
-    log.info("ScopeSSM '{}' state:{}", sessionSSM, sessionSSM.getState());
-  }
+    @PostMapping
+    public void event(HttpSession httpSession, @RequestBody ScopeSSMEvent event) throws Exception {
+        StateMachine<ScopeSSMState, ScopeSSMEvent> sessionSSM = scopeSSMService.getStateMachine(
+                httpSession.getId());
+        sessionSSM.sendEvent(event);
+        log.info("ScopeSSM '{}' state:{}", sessionSSM, sessionSSM.getState());
+    }
 }

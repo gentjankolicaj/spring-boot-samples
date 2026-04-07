@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/zookeeper")
 public class ZookeeperSSMController {
 
-  private final ZookeeperSSMService zookeeperSSMService;
+    private final ZookeeperSSMService zookeeperSSMService;
 
-  @Autowired
-  public ZookeeperSSMController(ZookeeperSSMService zookeeperSSMService) {
-    this.zookeeperSSMService = zookeeperSSMService;
-  }
+    @Autowired
+    public ZookeeperSSMController(ZookeeperSSMService zookeeperSSMService) {
+        this.zookeeperSSMService = zookeeperSSMService;
+    }
 
-  @PostMapping
-  public void event(@RequestBody ZookeeperSSMEvent zookeeperSSMEvent) {
-    zookeeperSSMService.event(zookeeperSSMEvent);
-  }
+    @PostMapping
+    public void event(@RequestBody ZookeeperSSMEvent zookeeperSSMEvent) {
+        zookeeperSSMService.event(zookeeperSSMEvent);
+    }
 
 }

@@ -7,15 +7,15 @@ import org.springframework.statemachine.state.State;
 
 @Slf4j
 public class ZookeeperSSMListener extends
-    StateMachineListenerAdapter<ZookeeperSSMState, ZookeeperSSMEvent> {
+        StateMachineListenerAdapter<ZookeeperSSMState, ZookeeperSSMEvent> {
 
 
-  @Override
-  public void stateChanged(State<ZookeeperSSMState, ZookeeperSSMEvent> from,
-      State<ZookeeperSSMState, ZookeeperSSMEvent> to) {
-    ZookeeperSSMState fromState = from != null ? from.getId() : null;
-    ZookeeperSSMState toState = to != null ? to.getId() : null;
-    log.info("Distributed SSM stateChanged : [from: {}, to:{}]", fromState, toState);
-  }
+    @Override
+    public void stateChanged(State<ZookeeperSSMState, ZookeeperSSMEvent> from,
+                             State<ZookeeperSSMState, ZookeeperSSMEvent> to) {
+        ZookeeperSSMState fromState = from != null ? from.getId() : null;
+        ZookeeperSSMState toState = to != null ? to.getId() : null;
+        log.info("Distributed SSM stateChanged : [from: {}, to:{}]", fromState, toState);
+    }
 
 }

@@ -12,19 +12,19 @@ import org.springframework.stereotype.Service;
 public class ShowcaseService {
 
 
-  private final StateMachine<ShowcaseState, ShowcaseEvent> stateMachine;
+    private final StateMachine<ShowcaseState, ShowcaseEvent> stateMachine;
 
 
-  @Autowired
-  public ShowcaseService(
-      @Qualifier("showcaseSSM") StateMachine<ShowcaseState, ShowcaseEvent> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-  }
+    @Autowired
+    public ShowcaseService(
+            @Qualifier("showcaseSSM") StateMachine<ShowcaseState, ShowcaseEvent> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void event(ShowcaseEvent event) {
-    stateMachine.sendEvent(event);
-    log.info("Showcase SSM state:{}", stateMachine.getState());
-  }
+    public void event(ShowcaseEvent event) {
+        stateMachine.sendEvent(event);
+        log.info("Showcase SSM state:{}", stateMachine.getState());
+    }
 
 }
