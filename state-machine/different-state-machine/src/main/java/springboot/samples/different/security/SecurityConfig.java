@@ -20,8 +20,9 @@ public class SecurityConfig {
       "/statemachine/tasks",
       "/statemachine/turnstile",
       "/statemachine/washer",
-      "/statemachine/zookeeper"
-      //note: not added /statemachine/security because it is secured.
+          "/statemachine/zookeeper",
+          //note: did not add /statemachine/security because it is secured.
+          "/statemachine/eventservice"
   };
 
   @Bean

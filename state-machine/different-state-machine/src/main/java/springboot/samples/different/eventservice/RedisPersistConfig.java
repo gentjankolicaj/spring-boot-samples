@@ -20,8 +20,7 @@ public class RedisPersistConfig {
   @Bean
   public StateMachinePersist<EventSSMState, EventSSMEvent, String> stateMachinePersist(
       RedisConnectionFactory connectionFactory) {
-    RedisStateMachineContextRepository<EventSSMState, EventSSMEvent> repository = new RedisStateMachineContextRepository<>(
-        connectionFactory);
+    RedisStateMachineContextRepository<EventSSMState, EventSSMEvent> repository = new RedisStateMachineContextRepository<>(connectionFactory);
     return new RepositoryStateMachinePersist<>(repository);
   }
 
@@ -30,5 +29,6 @@ public class RedisPersistConfig {
       StateMachinePersist<EventSSMState, EventSSMEvent, String> stateMachinePersist) {
     return new RedisStateMachinePersister<>(stateMachinePersist);
   }
+
 
 }
