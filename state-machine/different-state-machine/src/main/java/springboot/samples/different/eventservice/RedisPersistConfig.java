@@ -12,23 +12,23 @@ import org.springframework.statemachine.persist.RepositoryStateMachinePersist;
 @Configuration
 public class RedisPersistConfig {
 
-  @Bean
-  public RedisConnectionFactory redisConnectionFactory() {
-    return new JedisConnectionFactory();
-  }
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+        return new JedisConnectionFactory();
+    }
 
-  @Bean
-  public StateMachinePersist<EventSSMState, EventSSMEvent, String> stateMachinePersist(
-          RedisConnectionFactory connectionFactory) {
-    RedisStateMachineContextRepository<EventSSMState, EventSSMEvent> repository = new RedisStateMachineContextRepository<>(connectionFactory);
-    return new RepositoryStateMachinePersist<>(repository);
-  }
+    @Bean
+    public StateMachinePersist<EventSSMState, EventSSMEvent, String> stateMachinePersist(
+            RedisConnectionFactory connectionFactory) {
+        RedisStateMachineContextRepository<EventSSMState, EventSSMEvent> repository = new RedisStateMachineContextRepository<>(connectionFactory);
+        return new RepositoryStateMachinePersist<>(repository);
+    }
 
-  @Bean
-  public RedisStateMachinePersister<EventSSMState, EventSSMEvent> redisStateMachinePersister(
-          StateMachinePersist<EventSSMState, EventSSMEvent, String> stateMachinePersist) {
-    return new RedisStateMachinePersister<>(stateMachinePersist);
-  }
+    @Bean
+    public RedisStateMachinePersister<EventSSMState, EventSSMEvent> redisStateMachinePersister(
+            StateMachinePersist<EventSSMState, EventSSMEvent, String> stateMachinePersist) {
+        return new RedisStateMachinePersister<>(stateMachinePersist);
+    }
 
 
 }
