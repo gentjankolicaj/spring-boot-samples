@@ -4,6 +4,7 @@ package springboot.samples.different.eventservice;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.StateMachineBuilder;
@@ -21,6 +22,7 @@ public class EventSSMConfig {
     public static final String ITEMS_KEY = "items";
 
     @Bean("eventSSM")
+    @Scope("prototype") // This is the crucial missing piece
     public StateMachine<EventSSMState, EventSSMEvent> createStateMachine() throws Exception {
         StateMachineBuilder.Builder<EventSSMState, EventSSMEvent> builder = new Builder<>();
 

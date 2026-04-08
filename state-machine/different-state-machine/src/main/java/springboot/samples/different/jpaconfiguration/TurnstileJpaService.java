@@ -22,7 +22,7 @@ public class TurnstileJpaService {
 
     public void createAndPersist(String machineKey) throws Exception {
         StateMachine<TurnstileJpaState, TurnstileJpaEvent> stateMachine = turnstileJpaFactory.createStateMachine();
-        persister.persist(stateMachine, machineKey);
+        persister.persist(stateMachine, stateMachine.getId());
         log.info("Persist: Key '{}',SSM '{}'", machineKey, stateMachine);
     }
 

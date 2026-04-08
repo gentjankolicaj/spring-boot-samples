@@ -76,6 +76,10 @@
             <artifactId>spring-statemachine-data-redis</artifactId>
             <version>${spring-statemachine.version}</version>
         </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
 
         <!-- springdoc & swagger dependencies -->
         <dependency>

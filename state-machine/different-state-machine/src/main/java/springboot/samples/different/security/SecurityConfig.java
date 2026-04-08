@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -13,6 +15,9 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private static final String[] WHITELIST = {
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html",
             "/statemachine/cdplayer",
             "/statemachine/persist",
             "/statemachine/scope",
@@ -22,7 +27,10 @@ public class SecurityConfig {
             "/statemachine/washer",
             "/statemachine/zookeeper",
             //note: did not add /statemachine/security because it is secured.
-            "/statemachine/eventservice"
+            "/statemachine/eventservice",
+            "/statemachine/turnstilejpa",
+            "/statemachine/turnstilejpa/createAndPersist",
+            "/statemachine/turnstilejpa/restoreAndUpdate"
     };
 
     @Bean
@@ -34,6 +42,8 @@ public class SecurityConfig {
         );
 
         http.formLogin(Customizer.withDefaults()); // Enables the default /login page
+        http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
+        http.csrf(AbstractHttpConfigurer::disable); // Optional: disable CSRF for simpler API testing
         return http.build();
     }
 

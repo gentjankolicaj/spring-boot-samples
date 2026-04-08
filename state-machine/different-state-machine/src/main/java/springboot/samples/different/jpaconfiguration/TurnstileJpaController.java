@@ -21,7 +21,7 @@ public class TurnstileJpaController {
         this.turnstileJpaService = turnstileJpaService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createAndPersist")
     public void createAndPersist(@RequestBody String machineKey) throws Exception {
         turnstileJpaService.createAndPersist(machineKey);
     }
