@@ -13,7 +13,7 @@
     <description>Demo project with Spring Boot + State Machine + WebFlux</description>
 
     <properties>
-        <spring-statemachine.version>3.2.1</spring-statemachine.version>
+        <spring-statemachine.version>4.0.1</spring-statemachine.version>
     </properties>
 
     <dependencies>
