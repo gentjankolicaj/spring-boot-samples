@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statemachine/join")
 public class JoinController {
 
-  private final JoinStateMachineService service;
+    private final JoinStateMachineService service;
 
-  @Autowired
-  public JoinController(JoinStateMachineService service) {
-    this.service = service;
-  }
+    @Autowired
+    public JoinController(JoinStateMachineService service) {
+        this.service = service;
+    }
 
-  @PostMapping
-  public void inputEvent(@RequestBody String event) {
-    service.sendEvent(event);
-  }
+    @PostMapping
+    public void inputEvent(@RequestBody String event) {
+        service.sendEvent(event);
+    }
 
 }

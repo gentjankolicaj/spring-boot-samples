@@ -16,18 +16,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class JoinStateMachineService {
 
-  private final StateMachine<JoinStateMachineStateType, String> stateMachine;
+    private final StateMachine<JoinStateMachineStateType, String> stateMachine;
 
-  @Autowired
-  public JoinStateMachineService(
-      @Qualifier("joinStateMachine") StateMachine<JoinStateMachineStateType, String> stateMachine) {
-    this.stateMachine = stateMachine;
-    this.stateMachine.start();
-  }
+    @Autowired
+    public JoinStateMachineService(
+            @Qualifier("joinStateMachine") StateMachine<JoinStateMachineStateType, String> stateMachine) {
+        this.stateMachine = stateMachine;
+        this.stateMachine.start();
+    }
 
-  public void sendEvent(String event) {
-    stateMachine.sendEvent(event);
-    log.info("JoinStateMachineService state:{}", stateMachine.getState());
-  }
+    public void sendEvent(String event) {
+        stateMachine.sendEvent(event);
+        log.info("JoinStateMachineService state:{}", stateMachine.getState());
+    }
 
 }

@@ -6,15 +6,15 @@ import org.springframework.statemachine.state.State;
 
 @Slf4j
 public class JoinStateMachineListener extends
-    StateMachineListenerAdapter<JoinStateMachineStateType, String> {
+        StateMachineListenerAdapter<JoinStateMachineStateType, String> {
 
-  @Override
-  public void stateChanged(State<JoinStateMachineStateType, String> from,
-      State<JoinStateMachineStateType, String> to) {
-    JoinStateMachineStateType fromId = from != null ? from.getId() : null;
-    JoinStateMachineStateType toId = to != null ? to.getId() : null;
+    @Override
+    public void stateChanged(State<JoinStateMachineStateType, String> from,
+                             State<JoinStateMachineStateType, String> to) {
+        JoinStateMachineStateType fromId = from != null ? from.getId() : null;
+        JoinStateMachineStateType toId = to != null ? to.getId() : null;
 
-    log.info("JoinStateMachineListener stateChanged from {} to {}", fromId, toId);
-  }
+        log.info("JoinStateMachineListener stateChanged from {} to {}", fromId, toId);
+    }
 
 }

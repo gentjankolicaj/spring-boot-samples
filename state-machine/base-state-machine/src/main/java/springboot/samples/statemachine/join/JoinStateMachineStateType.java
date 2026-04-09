@@ -8,6 +8,6 @@ package springboot.samples.statemachine.join;
  */
 public enum JoinStateMachineStateType {
 
-  SINITIAL, S0,USER_TASK, SCRIPT_TASK, SJOIN, SEND
+    SINITIAL, S0, USER_TASK, SCRIPT_TASK, SJOIN, SEND
 
 }
