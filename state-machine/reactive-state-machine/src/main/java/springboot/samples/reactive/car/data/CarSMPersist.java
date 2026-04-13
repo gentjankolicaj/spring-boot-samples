@@ -33,6 +33,6 @@ public class CarSMPersist extends RepositoryStateMachinePersist<CarSM, CarSMStat
         carSM.setMachineId(context.getId());
         carSM.setState(context.getState() != null ? context.getState().toString() : null);
         carSM.setStateMachineContext(serialisedContext);
-        return null;
+        return carSM;
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.statemachine.guard.Guard;
 import org.springframework.stereotype.Component;
 import springboot.samples.reactive.car.data.CarSMPersister;
 
+import java.util.UUID;
+
 /**
  *
  * @author gentjan kolicaj
@@ -158,7 +160,11 @@ public class CarSMFactory {
         //config configuration
         builder.configureConfiguration()
                 .withConfiguration()
-                .autoStartup(false);
+                .machineId(UUID.randomUUID().toString()) //to be generated in collaboration with db logic
+                .autoStartup(true);
+        //To ensure your StateMachine and your JPA entity share the exact same unique ID, you should adopt a "Repository-First" pattern.
+        // Instead of trying to generate the ID inside the State Machine,you save the CarSM entity to the database first,
+        // retrieve the generated ID, and then pass that ID to your State Machine.
 
 
         // The machine automatically triggers the save after the state change
@@ -289,7 +295,12 @@ public class CarSMFactory {
         //config configuration
         builder.configureConfiguration()
                 .withConfiguration()
-                .autoStartup(false);
+                .machineId(UUID.randomUUID().toString()) //to be generated in collaboration with db logic
+                .autoStartup(true);
+
+        //To ensure your StateMachine and your JPA entity share the exact same unique ID, you should adopt a "Repository-First" pattern.
+        // Instead of trying to generate the ID inside the State Machine,you save the CarSM entity to the database first,
+        // retrieve the generated ID, and then pass that ID to your State Machine.
 
         return builder.build();
     }

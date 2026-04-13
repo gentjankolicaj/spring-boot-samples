@@ -31,9 +31,7 @@ public class CarSMController {
     public Flux<SingletonSMResultDTO> singletonSM(@RequestBody CarSMEvents carSMEvents) {
         return carSMService.singletonSM(carSMEvents)
                 .map(result ->
-                        new SingletonSMResultDTO(result.getResultType(),
-                                result.getRegion().getId(),
-                                result.getRegion().getState()));
+                        new SingletonSMResultDTO(result.getResultType(), result.getRegion().getId()));
     }
 
     @PostMapping(value = "/singletonSM/uml", produces = MediaType.IMAGE_PNG_VALUE)
@@ -51,14 +49,12 @@ public class CarSMController {
         return carSMService.createSMManualPersist().map(result -> new SMCreateResultDTO(result.getId(), null));
     }
 
-    public record SingletonSMResultDTO(StateMachineEventResult.ResultType resultType, String id,
-                                       State<CarSMStates, CarSMEvents> state) {
+    public record SingletonSMResultDTO(StateMachineEventResult.ResultType resultType, String id) {
 
     }
 
     public record SMCreateResultDTO(String id, Collection<State<CarSMStates, CarSMEvents>> states) {
 
     }
-
 
 }
