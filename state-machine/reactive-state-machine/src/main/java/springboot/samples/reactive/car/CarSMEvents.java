@@ -6,7 +6,7 @@ package springboot.samples.reactive.car;
  * @since 4/9/26 10:20 AM
  *
  */
-public enum CarEvents {
+public enum CarSMEvents {
 
     ENCLOSE,
     ENTER, EXIT,

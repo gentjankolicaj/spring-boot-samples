@@ -50,9 +50,9 @@ Spring boot samples with different tech.
 ### Spring StateMachine
 
 - [Spring statemachine + rest](/state-machine/base-state-machine)
-- [(Tenis) spring statemachine + rest](/state-machine/tenis-state-machine)
-- [(Different) spring statemachine + rest + persistence](/state-machine/different-state-machine)
-- [Reactive spring statemachine + rest](state-machine/reactive-state-machine)
+- [Tenis spring statemachine + rest](/state-machine/tenis-state-machine)
+- [Different spring statemachine + rest + persistence](/state-machine/different-state-machine)
+- [Reactive spring statemachine + rest + persistence](state-machine/reactive-state-machine)
 
 ### Spring Test :
 

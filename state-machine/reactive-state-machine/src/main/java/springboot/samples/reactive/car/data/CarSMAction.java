@@ -16,7 +16,7 @@ import org.springframework.statemachine.data.RepositoryAction;
 @Entity
 @Table(name = "car_state_machine_action")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class CarStateMachineAction extends RepositoryAction {
+public class CarSMAction extends RepositoryAction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

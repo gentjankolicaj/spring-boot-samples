@@ -23,13 +23,13 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/car")
 @RequiredArgsConstructor
-public class CarController {
+public class CarSMController {
 
-    private final CarService carService;
+    private final CarSMService carSMService;
 
     @PostMapping("/singletonSM")
-    public Flux<SingletonSMResultDTO> singletonSM(@RequestBody CarEvents carEvents) {
-        return carService.singletonSM(carEvents)
+    public Flux<SingletonSMResultDTO> singletonSM(@RequestBody CarSMEvents carSMEvents) {
+        return carSMService.singletonSM(carSMEvents)
                 .map(result ->
                         new SingletonSMResultDTO(result.getResultType(),
                                 result.getRegion().getId(),
@@ -38,25 +38,25 @@ public class CarController {
 
     @PostMapping(value = "/singletonSM/uml", produces = MediaType.IMAGE_PNG_VALUE)
     public Mono<byte[]> singletonSMUml() {
-        return carService.singletonSMUml();
+        return carSMService.singletonSMUml();
     }
 
     @PostMapping("/create-auto-persistence")
     public Mono<SMCreateResultDTO> createSMAutoPersist() throws Exception {
-        return carService.createSMAutoPersist().map(result -> new SMCreateResultDTO(result.getId(), null));
+        return carSMService.createSMAutoPersist().map(result -> new SMCreateResultDTO(result.getId(), null));
     }
 
     @PostMapping("/create-manual-persistence")
     public Mono<SMCreateResultDTO> createSMManualPersist() throws Exception {
-        return carService.createSMManualPersist().map(result -> new SMCreateResultDTO(result.getId(), null));
+        return carSMService.createSMManualPersist().map(result -> new SMCreateResultDTO(result.getId(), null));
     }
 
     public record SingletonSMResultDTO(StateMachineEventResult.ResultType resultType, String id,
-                                       State<CarStates, CarEvents> state) {
+                                       State<CarSMStates, CarSMEvents> state) {
 
     }
 
-    public record SMCreateResultDTO(String id, Collection<State<CarStates, CarEvents>> states) {
+    public record SMCreateResultDTO(String id, Collection<State<CarSMStates, CarSMEvents>> states) {
 
     }
 

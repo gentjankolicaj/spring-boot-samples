@@ -16,7 +16,7 @@ import org.springframework.statemachine.data.RepositoryStateMachine;
 @Entity
 @Table(name = "car_state_machine")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class CarStateMachine extends RepositoryStateMachine {
+public class CarSM extends RepositoryStateMachine {
 
     @Id
     @Column(name = "machine_id")

@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-public class CarStateMachinePersistenceConfig {
+public class CarSMPersistenceConfig {
 
     @Bean
-    public CarStateMachinePersister stateMachineRuntimePersister(CarStateMachinePersist carStateMachinePersist) {
+    public CarSMPersister stateMachineRuntimePersister(CarSMPersist carSMPersist) {
         // This wraps our custom persist logic into a lifecycle interceptor
-        return new CarStateMachinePersister(carStateMachinePersist);
+        return new CarSMPersister(carSMPersist);
     }
 
 }

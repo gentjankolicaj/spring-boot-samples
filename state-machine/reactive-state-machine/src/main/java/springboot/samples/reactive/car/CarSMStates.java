@@ -6,7 +6,7 @@ package springboot.samples.reactive.car;
  * @since 4/9/26 10:18 AM
  *
  */
-public enum CarStates {
+public enum CarSMStates {
 
     CAR_PRESENT, //initial
     CAR_STOPPED, //end

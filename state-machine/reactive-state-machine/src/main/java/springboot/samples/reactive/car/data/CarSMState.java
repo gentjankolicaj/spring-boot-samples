@@ -20,7 +20,7 @@ import java.util.Set;
 @Entity
 @Table(name = "car_state_machine_state")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class CarStateMachineState extends RepositoryState {
+public class CarSMState extends RepositoryState {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,23 +46,23 @@ public class CarStateMachineState extends RepositoryState {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_car_state_machine_state_initial_action"))
-    private CarStateMachineAction initialAction;
+    private CarSMAction initialAction;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_car_state_machine_state_parent_state"))
-    private CarStateMachineState parentState;
+    private CarSMState parentState;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(foreignKey = @ForeignKey(name = "fk_car_state_machine_state_state_actions_s"), inverseForeignKey = @ForeignKey(name = "fk_car_state_machine_state_state_actions_a"))
-    private Set<CarStateMachineAction> stateActions;
+    private Set<CarSMAction> stateActions;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(foreignKey = @ForeignKey(name = "fk_car_state_machine_state_entry_actions_s"), inverseForeignKey = @ForeignKey(name = "fk_car_state_machine_state_entry_actions_a"))
-    private Set<CarStateMachineAction> entryActions;
+    private Set<CarSMAction> entryActions;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(foreignKey = @ForeignKey(name = "fk_car_state_machine_state_exit_actions_s"), inverseForeignKey = @ForeignKey(name = "fk_car_state_machine_state_exit_actions_a"))
-    private Set<CarStateMachineAction> exitActions;
+    private Set<CarSMAction> exitActions;
 
     @ElementCollection(fetch = FetchType.EAGER, targetClass = String.class)
     @CollectionTable(name = "deferred_events", foreignKey = @ForeignKey(name = "fk_car_state_machine_state_deferred_events"))

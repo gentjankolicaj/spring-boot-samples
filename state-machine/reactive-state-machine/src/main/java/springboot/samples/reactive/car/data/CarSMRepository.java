@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface CarStateMachineRepository extends StateMachineRepository<CarStateMachine> {
+public interface CarSMRepository extends StateMachineRepository<CarSM> {
 }
