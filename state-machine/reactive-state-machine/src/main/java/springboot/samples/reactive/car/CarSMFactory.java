@@ -6,9 +6,9 @@ import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.StateMachineBuilder;
 import org.springframework.statemachine.guard.Guard;
 import org.springframework.stereotype.Component;
+import springboot.samples.reactive.car.data.CarSMID;
+import springboot.samples.reactive.car.data.CarSMIDRepository;
 import springboot.samples.reactive.car.data.CarSMPersister;
-
-import java.util.UUID;
 
 /**
  *
@@ -22,6 +22,7 @@ import java.util.UUID;
 public class CarSMFactory {
 
     private final CarSMPersister persister;
+    private final CarSMIDRepository carSMIDRepository;
 
     private static Guard<CarSMStates, CarSMEvents> isCarOpened() {
         return ctx -> {
@@ -156,15 +157,16 @@ public class CarSMFactory {
                 .and()
                 .withExternal().source(CarSMStates.PARKING).target(CarSMStates.CAR_STOPPED);
 
+        //To ensure your StateMachine and your JPA entity share the exact same unique ID, you should adopt a "Repository-First" pattern.
+        // Instead of trying to generate the ID inside the State Machine,you save the CarSM entity to the database first,
+        // retrieve the generated ID, and then pass that ID to your State Machine.
+        CarSMID carSMID = carSMIDRepository.save(new CarSMID());
 
         //config configuration
         builder.configureConfiguration()
                 .withConfiguration()
-                .machineId(UUID.randomUUID().toString()) //to be generated in collaboration with db logic
+                .machineId(carSMID.getStringId())
                 .autoStartup(true);
-        //To ensure your StateMachine and your JPA entity share the exact same unique ID, you should adopt a "Repository-First" pattern.
-        // Instead of trying to generate the ID inside the State Machine,you save the CarSM entity to the database first,
-        // retrieve the generated ID, and then pass that ID to your State Machine.
 
 
         // The machine automatically triggers the save after the state change
@@ -291,16 +293,17 @@ public class CarSMFactory {
                 .and()
                 .withExternal().source(CarSMStates.PARKING).target(CarSMStates.CAR_STOPPED);
 
+        //To ensure your StateMachine and your JPA entity share the exact same unique ID, you should adopt a "Repository-First" pattern.
+        // Instead of trying to generate the ID inside the State Machine,you save the CarSM entity to the database first,
+        // retrieve the generated ID, and then pass that ID to your State Machine.
+        CarSMID carSMID = carSMIDRepository.save(new CarSMID());
 
         //config configuration
         builder.configureConfiguration()
                 .withConfiguration()
-                .machineId(UUID.randomUUID().toString()) //to be generated in collaboration with db logic
+                .machineId(carSMID.getStringId())
                 .autoStartup(true);
 
-        //To ensure your StateMachine and your JPA entity share the exact same unique ID, you should adopt a "Repository-First" pattern.
-        // Instead of trying to generate the ID inside the State Machine,you save the CarSM entity to the database first,
-        // retrieve the generated ID, and then pass that ID to your State Machine.
 
         return builder.build();
     }

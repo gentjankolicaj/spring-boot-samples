@@ -11,10 +11,14 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "car_state_machine_id_seq")
+@Table(name = "car_state_machine_id_ref")
 public class CarSMID {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long value;
+    private Long id;
+
+    public String getStringId() {
+        return "" + id;
+    }
 }
