@@ -1,6 +1,8 @@
 package springboot.samples.reactive.car;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.test.StateMachineTestPlan;
 import org.springframework.statemachine.test.StateMachineTestPlanBuilder;
@@ -11,12 +13,16 @@ import org.springframework.statemachine.test.StateMachineTestPlanBuilder;
  * @since 4/9/26 11:52 AM
  *
  */
+@SpringBootTest
 class CarFactoryTest {
+
+    @Autowired
+    CarFactory carFactory;
 
     @Test
     void createCarStateMachine() throws Exception {
         // 1. Setup the state machine from your method
-        StateMachine<CarStates, CarEvents> stateMachine = CarFactory.createCarStateMachine();
+        StateMachine<CarStates, CarEvents> stateMachine = carFactory.createSMWithPersistence();
 
         // 2. Build the test plan
         StateMachineTestPlan<CarStates, CarEvents> plan =

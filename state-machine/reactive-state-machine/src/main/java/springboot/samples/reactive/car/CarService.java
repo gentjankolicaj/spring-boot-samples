@@ -15,9 +15,13 @@ import reactor.core.publisher.Mono;
  */
 @Service
 public class CarService {
-    private final StateMachine<CarStates, CarEvents> singletonSM = CarFactory.createCarStateMachine();
+    private final CarFactory carFactory;
+    private final StateMachine<CarStates, CarEvents> singletonSM;
 
-    public CarService() throws Exception {
+    public CarService(CarFactory carFactory) throws Exception {
+        this.carFactory = carFactory;
+        this.singletonSM = carFactory.createSMWithPersistence();
+        this.singletonSM.startReactively().block();
     }
 
     public Flux<StateMachineEventResult<CarStates, CarEvents>> singletonSM(CarEvents carEvents) {
@@ -27,4 +31,13 @@ public class CarService {
     public Mono<byte[]> singletonSMUml() {
         return Mono.empty();
     }
+
+    public Mono<StateMachine<CarStates, CarEvents>> createSMAutoPersist() throws Exception {
+        return Mono.just(carFactory.createSMWithPersistence());
+    }
+
+    public Mono<StateMachine<CarStates, CarEvents>> createSMManualPersist() throws Exception {
+        return Mono.just(carFactory.createSMWithoutPersistence());
+    }
+
 }
