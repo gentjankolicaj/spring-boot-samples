@@ -6,14 +6,12 @@ services:
     container_name: spring-state-machine-mysql
     restart: always
     environment:
-      MYSQL_DATABASE: spring_state_machine
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: springuser
-      MYSQL_PASSWORD: springpassword
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 5s

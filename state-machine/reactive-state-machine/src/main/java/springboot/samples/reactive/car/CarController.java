@@ -25,12 +25,13 @@ public class CarController {
     private final CarService carService;
 
     @PostMapping("/singletonSM")
-    public Flux<StateMachineEventResult<CarState, CarEvent>> singletonSM(@RequestBody CarEvent carEvent) {
-        return carService.singletonSM(carEvent);
+    public Flux<StateMachineEventResult<CarStates, CarEvents>> singletonSM(@RequestBody CarEvents carEvents) {
+        return carService.singletonSM(carEvents);
     }
 
     @PostMapping(value = "/singletonSM/uml", produces = MediaType.IMAGE_PNG_VALUE)
     public Mono<byte[]> singletonSMUml() {
         return carService.singletonSMUml();
     }
+
 }

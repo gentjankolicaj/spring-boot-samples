@@ -15,13 +15,13 @@ import reactor.core.publisher.Mono;
  */
 @Service
 public class CarService {
-    private final StateMachine<CarState, CarEvent> singletonSM = CarFactory.createCarStateMachine();
+    private final StateMachine<CarStates, CarEvents> singletonSM = CarFactory.createCarStateMachine();
 
     public CarService() throws Exception {
     }
 
-    public Flux<StateMachineEventResult<CarState, CarEvent>> singletonSM(CarEvent carEvent) {
-        return singletonSM.sendEvent(Mono.just(MessageBuilder.withPayload(carEvent).build()));
+    public Flux<StateMachineEventResult<CarStates, CarEvents>> singletonSM(CarEvents carEvents) {
+        return singletonSM.sendEvent(Mono.just(MessageBuilder.withPayload(carEvents).build()));
     }
 
     public Mono<byte[]> singletonSMUml() {

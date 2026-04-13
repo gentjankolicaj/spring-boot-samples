@@ -14,117 +14,117 @@ import org.springframework.statemachine.guard.Guard;
 @Slf4j
 public class CarFactory {
 
-    public static StateMachine<CarState, CarEvent> createCarStateMachine() throws Exception {
-        StateMachineBuilder.Builder<CarState, CarEvent> builder = new StateMachineBuilder.Builder<>();
+    public static StateMachine<CarStates, CarEvents> createCarStateMachine() throws Exception {
+        StateMachineBuilder.Builder<CarStates, CarEvents> builder = new StateMachineBuilder.Builder<>();
 
         //config states
         builder.configureStates()
                 //root states
                 .withStates()
-                .initial(CarState.CAR_PRESENT)
-                .state(CarState.PRE_INSIDE)
-                .choice(CarState.INSIDE)
-                .state(CarState.CAR_OFF)
-                .state(CarState.CAR_RUNNING)
-                .end(CarState.CAR_STOPPED)
+                .initial(CarStates.CAR_PRESENT)
+                .state(CarStates.PRE_INSIDE)
+                .choice(CarStates.INSIDE)
+                .state(CarStates.CAR_OFF)
+                .state(CarStates.CAR_RUNNING)
+                .end(CarStates.CAR_STOPPED)
 
                 //pre pre inside states
                 .and()
                 .withStates()
-                .parent(CarState.PRE_INSIDE)
-                .initial(CarState.IS_CAR_OPEN)
-                .state(CarState.CAR_OPENED)
-                .state(CarState.CAR_CLOSED)
+                .parent(CarStates.PRE_INSIDE)
+                .initial(CarStates.IS_CAR_OPEN)
+                .state(CarStates.CAR_OPENED)
+                .state(CarStates.CAR_CLOSED)
 
                 //post onboard states
                 .and()
                 .withStates()
-                .parent(CarState.POST_INSIDE)
-                .choice(CarState.INSIDE)
+                .parent(CarStates.POST_INSIDE)
+                .choice(CarStates.INSIDE)
 
                 //off states
                 .and()
                 .withStates()
-                .parent(CarState.CAR_OFF)
-                .initial(CarState.OFF_NOT_READY)
-                .state(CarState.OFF_BRAKE_READY)
-                .state(CarState.OFF_CLUTCH_READY)
+                .parent(CarStates.CAR_OFF)
+                .initial(CarStates.OFF_NOT_READY)
+                .state(CarStates.OFF_BRAKE_READY)
+                .state(CarStates.OFF_CLUTCH_READY)
 
                 //running states
                 .and()
                 .withStates()
-                .parent(CarState.CAR_RUNNING)
-                .initial(CarState.ENGINE_ON)
-                .state(CarState.CHANGE_GEAR)
-                .state(CarState.MOVING)
-                .state(CarState.DRIVING)
-                .state(CarState.NEUTRAL)
-                .state(CarState.IDLE)
-                .state(CarState.PARKING);
+                .parent(CarStates.CAR_RUNNING)
+                .initial(CarStates.ENGINE_ON)
+                .state(CarStates.CHANGE_GEAR)
+                .state(CarStates.MOVING)
+                .state(CarStates.DRIVING)
+                .state(CarStates.NEUTRAL)
+                .state(CarStates.IDLE)
+                .state(CarStates.PARKING);
 
         //config transitions
         builder.configureTransitions()
-                .withExternal().source(CarState.CAR_PRESENT).target(CarState.PRE_INSIDE)
+                .withExternal().source(CarStates.CAR_PRESENT).target(CarStates.PRE_INSIDE)
                 .action(ctx -> log.info("Car found present => transition to pre inside"))
                 .and()
                 .withChoice()
-                .source(CarState.IS_CAR_OPEN)
-                .first(CarState.CAR_OPENED, isCarOpened())
-                .last(CarState.CAR_CLOSED)
+                .source(CarStates.IS_CAR_OPEN)
+                .first(CarStates.CAR_OPENED, isCarOpened())
+                .last(CarStates.CAR_CLOSED)
 
                 //unlock transitions
                 .and()
-                .withExternal().source(CarState.CAR_CLOSED).target(CarState.CAR_OPENED).event(CarEvent.UNLOCK)
+                .withExternal().source(CarStates.CAR_CLOSED).target(CarStates.CAR_OPENED).event(CarEvents.UNLOCK)
                 //lock transitions
                 .and()
-                .withExternal().source(CarState.CAR_OPENED).target(CarState.CAR_CLOSED).event(CarEvent.LOCK)
+                .withExternal().source(CarStates.CAR_OPENED).target(CarStates.CAR_CLOSED).event(CarEvents.LOCK)
 
                 //inside transitions
                 .and()
-                .withExternal().source(CarState.CAR_OPENED).target(CarState.INSIDE).event(CarEvent.ENTER)
+                .withExternal().source(CarStates.CAR_OPENED).target(CarStates.INSIDE).event(CarEvents.ENTER)
                 .and()
                 .withChoice()
-                .source(CarState.INSIDE)
-                .first(CarState.CAR_RUNNING, isCarRunning())
-                .last(CarState.CAR_OFF)
+                .source(CarStates.INSIDE)
+                .first(CarStates.CAR_RUNNING, isCarRunning())
+                .last(CarStates.CAR_OFF)
 
                 //off transitions
                 .and()
-                .withExternal().source(CarState.OFF_NOT_READY).target(CarState.OFF_BRAKE_READY).event(CarEvent.PRES_BRAKE)
+                .withExternal().source(CarStates.OFF_NOT_READY).target(CarStates.OFF_BRAKE_READY).event(CarEvents.PRES_BRAKE)
                 .and()
-                .withExternal().source(CarState.OFF_BRAKE_READY).target(CarState.OFF_NOT_READY).event(CarEvent.RELEASE_BRAKE)
+                .withExternal().source(CarStates.OFF_BRAKE_READY).target(CarStates.OFF_NOT_READY).event(CarEvents.RELEASE_BRAKE)
                 .and()
-                .withExternal().source(CarState.OFF_BRAKE_READY).target(CarState.OFF_CLUTCH_READY).event(CarEvent.PRESS_CLUTCH)
+                .withExternal().source(CarStates.OFF_BRAKE_READY).target(CarStates.OFF_CLUTCH_READY).event(CarEvents.PRESS_CLUTCH)
                 .and()
-                .withExternal().source(CarState.OFF_CLUTCH_READY).target(CarState.OFF_NOT_READY).event(CarEvent.RELEASE_CLUTCH)
+                .withExternal().source(CarStates.OFF_CLUTCH_READY).target(CarStates.OFF_NOT_READY).event(CarEvents.RELEASE_CLUTCH)
                 .and()
-                .withExternal().source(CarState.OFF_CLUTCH_READY).target(CarState.ENGINE_ON).event(CarEvent.START_ENGINE)
+                .withExternal().source(CarStates.OFF_CLUTCH_READY).target(CarStates.ENGINE_ON).event(CarEvents.START_ENGINE)
 
                 //running transitions
                 .and()
-                .withExternal().source(CarState.ENGINE_ON).target(CarState.CHANGE_GEAR).event(CarEvent.PRESS_CLUTCH)
+                .withExternal().source(CarStates.ENGINE_ON).target(CarStates.CHANGE_GEAR).event(CarEvents.PRESS_CLUTCH)
                 .and()
-                .withExternal().source(CarState.CHANGE_GEAR).target(CarState.ON_GEAR).event(CarEvent.ENTER_GEAR)
+                .withExternal().source(CarStates.CHANGE_GEAR).target(CarStates.ON_GEAR).event(CarEvents.ENTER_GEAR)
                 .and()
-                .withExternal().source(CarState.ON_GEAR).target(CarState.MOVING).event(CarEvent.RELEASE_CLUTCH)
+                .withExternal().source(CarStates.ON_GEAR).target(CarStates.MOVING).event(CarEvents.RELEASE_CLUTCH)
                 .and()
-                .withInternal().source(CarState.MOVING).event(CarEvent.STEERING)
+                .withInternal().source(CarStates.MOVING).event(CarEvents.STEERING)
                 .and()
-                .withExternal().source(CarState.MOVING).target(CarState.DRIVING).event(CarEvent.PRESS_GAS)
+                .withExternal().source(CarStates.MOVING).target(CarStates.DRIVING).event(CarEvents.PRESS_GAS)
                 .and()
-                .withExternal().source(CarState.DRIVING).target(CarState.NEUTRAL).event(CarEvent.PRESS_CLUTCH)
+                .withExternal().source(CarStates.DRIVING).target(CarStates.NEUTRAL).event(CarEvents.PRESS_CLUTCH)
                 .and()
-                .withExternal().source(CarState.NEUTRAL).target(CarState.IDLE).event(CarEvent.PRES_BRAKE)
+                .withExternal().source(CarStates.NEUTRAL).target(CarStates.IDLE).event(CarEvents.PRES_BRAKE)
                 .and()
-                .withExternal().source(CarState.IDLE).target(CarState.NEUTRAL).event(CarEvent.RELEASE_BRAKE)
+                .withExternal().source(CarStates.IDLE).target(CarStates.NEUTRAL).event(CarEvents.RELEASE_BRAKE)
                 .and()
-                .withExternal().source(CarState.IDLE).target(CarState.PARKING).event(CarEvent.STOP_ENGINE)
+                .withExternal().source(CarStates.IDLE).target(CarStates.PARKING).event(CarEvents.STOP_ENGINE)
                 .and()
-                .withExternal().source(CarState.NEUTRAL).target(CarState.DRIVING).event(CarEvent.RELEASE_CLUTCH)
+                .withExternal().source(CarStates.NEUTRAL).target(CarStates.DRIVING).event(CarEvents.RELEASE_CLUTCH)
 
                 //stop transition
                 .and()
-                .withExternal().source(CarState.PARKING).target(CarState.CAR_STOPPED);
+                .withExternal().source(CarStates.PARKING).target(CarStates.CAR_STOPPED);
 
 
         //config configuration
@@ -135,14 +135,14 @@ public class CarFactory {
         return builder.build();
     }
 
-    private static Guard<CarState, CarEvent> isCarOpened() {
+    private static Guard<CarStates, CarEvents> isCarOpened() {
         return ctx -> {
             log.info("Car opened.");
             return true;
         };
     }
 
-    private static Guard<CarState, CarEvent> isCarRunning() {
+    private static Guard<CarStates, CarEvents> isCarRunning() {
         return ctx -> {
             log.info("Car is off.");
             return false;
